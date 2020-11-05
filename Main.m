@@ -6,14 +6,12 @@ dm = DataManipulator('./data');
 % dm.loadWeatherDataset();
 % dm.loadSeaDataset();
 % dm.loadHyperplaneDataset();
-% dm.loadOccupancyDataset();
-% dm.loadKDDDataset();
-% dm.loadForestCoverTypeDataset();
+dm.loadKDDDataset();
 % dm.loadSUSYDataset();
-dm.loadKittiDataset();
+% dm.loadKittiDataset();
 % dm.loadHepmassDataset();
 %%--------dataset---------%%
 dm.normalize();
-epochs = 15;
-nRun = 1;
+epochs = 1;
+nRun = 3;
 AOMSDA

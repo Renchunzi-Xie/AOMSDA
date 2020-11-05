@@ -1,6 +1,5 @@
-# Reference
 
-## Paper
+# Paper
 
 Automatic Online Multi-source Domain Adaptation
 

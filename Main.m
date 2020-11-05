@@ -16,4 +16,4 @@ dm.loadKittiDataset();
 dm.normalize();
 epochs = 15;
 nRun = 1;
-AOMDA
+AOMSDA

@@ -7,7 +7,7 @@ Automatic Online Multi-source Domain Adaptation
 
 `AOMSDA` uses Matlab and it was the original code used for this paper. 
 
-All the datasets have provided in this code except susy and hepass because the limited space.
+All the datasets have provided in this code except susy and hepass because of the limited space.
 
 
 # AOMSDA_Matlab

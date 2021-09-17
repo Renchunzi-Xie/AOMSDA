@@ -1,13 +1,15 @@
 # Paper
 
-Automatic Online Multi-source Domain Adaptation
+This is the official site for the paper "Automatic Online Multi-source Domain Adaptation" [a link](https://arxiv.org/abs/2109.01996).
+
+This paper has been accepted by Information Sciences.
 
 
 # Notes
 
 `AOMSDA` uses Matlab and it was the original code used for this paper. 
 
-All the datasets have provided in this code except susy and hepass because of the limited space.
+All the datasets have provided in this code except susy and hepass because the limited space.
 
 
 # AOMSDA_Matlab
@@ -22,6 +24,10 @@ Automatic Online Multi-source Domain Adaptation
 
 4. Switch the dataset you want by turning on the code 'dm.load***Dataset();'.
 
+
+# Acknowledgement
+
+This work is supported by Ministry of Education, Republic of Singapore, Tier 1 Grant.
 
 
 Thank you.

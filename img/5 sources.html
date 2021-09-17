@@ -1,0 +1,1736 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,IE=9,chrome=1"><meta name="generator" content="MATLAB 2020b"><title>Untitled</title><style type="text/css">.rtcContent { padding: 30px; } .CodeBlock { background-color: #F7F7F7; margin: 10px 0 10px 0;}
+.S0 { border-left: 1px solid rgb(233, 233, 233); border-right: 1px solid rgb(233, 233, 233); border-top: 1px solid rgb(233, 233, 233); border-bottom: 0px none rgb(0, 0, 0); border-radius: 4px 4px 0px 0px; padding: 6px 45px 0px 13px; line-height: 17.234px; min-height: 18px; white-space: nowrap; color: rgb(0, 0, 0); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }
+.S1 { border-left: 1px solid rgb(233, 233, 233); border-right: 1px solid rgb(233, 233, 233); border-top: 0px none rgb(0, 0, 0); border-bottom: 0px none rgb(0, 0, 0); border-radius: 0px; padding: 0px 45px 0px 13px; line-height: 17.234px; min-height: 18px; white-space: nowrap; color: rgb(0, 0, 0); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }
+.S2 { border-left: 1px solid rgb(233, 233, 233); border-right: 1px solid rgb(233, 233, 233); border-top: 0px none rgb(0, 0, 0); border-bottom: 1px solid rgb(233, 233, 233); border-radius: 0px; padding: 0px 45px 4px 13px; line-height: 17.234px; min-height: 18px; white-space: nowrap; color: rgb(0, 0, 0); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }
+.S3 { color: rgb(64, 64, 64); padding: 10px 0px 6px 17px; background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px; overflow-x: hidden; line-height: 17.234px;  }
+.embeddedOutputsErrorElement {min-height: 18px; max-height: 250px; overflow: auto;}
+.embeddedOutputsErrorElement.inlineElement {}
+.embeddedOutputsErrorElement.rightPaneElement {}
+.embeddedOutputsWarningElement{min-height: 18px; max-height: 250px; overflow: auto;}
+.embeddedOutputsWarningElement.inlineElement {}
+.embeddedOutputsWarningElement.rightPaneElement {}
+.diagnosticMessage-wrapper {font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 12px;}
+.diagnosticMessage-wrapper.diagnosticMessage-warningType {color: rgb(255,100,0);}
+.diagnosticMessage-wrapper.diagnosticMessage-warningType a {color: rgb(255,100,0); text-decoration: underline;}
+.diagnosticMessage-wrapper.diagnosticMessage-errorType {color: rgb(230,0,0);}
+.diagnosticMessage-wrapper.diagnosticMessage-errorType a {color: rgb(230,0,0); text-decoration: underline;}
+.diagnosticMessage-wrapper .diagnosticMessage-messagePart,.diagnosticMessage-wrapper .diagnosticMessage-causePart {white-space: pre-wrap;}
+.diagnosticMessage-wrapper .diagnosticMessage-stackPart {white-space: pre;}
+.embeddedOutputsTextElement,.embeddedOutputsVariableStringElement {white-space: pre; word-wrap: initial; min-height: 18px; max-height: 250px; overflow: auto;}
+.textElement,.rtcDataTipElement .textElement {padding-top: 3px;}
+.embeddedOutputsTextElement.inlineElement,.embeddedOutputsVariableStringElement.inlineElement {}
+.inlineElement .textElement {}
+.embeddedOutputsTextElement.rightPaneElement,.embeddedOutputsVariableStringElement.rightPaneElement {min-height: 16px;}
+.rightPaneElement .textElement {padding-top: 2px; padding-left: 9px;}
+.S4 { border-left: 1px solid rgb(233, 233, 233); border-right: 1px solid rgb(233, 233, 233); border-top: 1px solid rgb(233, 233, 233); border-bottom: 1px solid rgb(233, 233, 233); border-radius: 0px 0px 4px 4px; padding: 6px 45px 4px 13px; line-height: 17.234px; min-height: 18px; white-space: nowrap; color: rgb(0, 0, 0); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }</style></head><body><div class = rtcContent><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S0'><span style="white-space: pre;"><span>clc</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>clear</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>addpath </span><span style="color: rgb(170, 4, 249);">MmodelPackages</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>dm = DataManipulator(</span><span style="color: rgb(170, 4, 249);">'./data'</span><span>);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span style="color: rgb(14, 0, 255);">for </span><span>i = 1:7</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>    </span><span style="color: rgb(2, 128, 9);">%%--------dataset---------%%</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>    </span><span style="color: rgb(14, 0, 255);">if </span><span>i == 1</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>        fprintf(</span><span style="color: rgb(170, 4, 249);">'weather'</span><span>)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>        dm.loadWeatherDataset();</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>    </span><span style="color: rgb(14, 0, 255);">elseif </span><span>i == 2</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>        fprintf(</span><span style="color: rgb(170, 4, 249);">'sea'</span><span>)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>        dm.loadSeaDataset();</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>    </span><span style="color: rgb(14, 0, 255);">elseif </span><span>i == 3    </span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>        fprintf(</span><span style="color: rgb(170, 4, 249);">'hyperplane'</span><span>)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>        dm.loadHyperplaneDataset();</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>    </span><span style="color: rgb(14, 0, 255);">elseif </span><span>i == 4   </span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>        fprintf(</span><span style="color: rgb(170, 4, 249);">'kdd'</span><span>)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>        dm.loadKDDDataset();</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>    </span><span style="color: rgb(14, 0, 255);">elseif </span><span>i == 5</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>        fprintf(</span><span style="color: rgb(170, 4, 249);">'susy'</span><span>)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>        dm.loadSUSYDataset();</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>    </span><span style="color: rgb(14, 0, 255);">elseif </span><span>i ==6</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>        fprintf(</span><span style="color: rgb(170, 4, 249);">'kitti'</span><span>)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>        dm.loadKittiDataset();</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>    </span><span style="color: rgb(14, 0, 255);">elseif </span><span>i ==7 </span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>        fprintf(</span><span style="color: rgb(170, 4, 249);">'hepmass'</span><span>)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>        dm.loadHepmassDataset();</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>    </span><span style="color: rgb(14, 0, 255);">end</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>    </span><span style="color: rgb(2, 128, 9);">%%--------dataset---------%%</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>    dm.normalize();</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>    epochs = 1;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>    nRun = 5;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre;"><span>    AOMSDA</span></span></div></div><div class="inlineWrapper outputs"><div  class = 'S2'><span style="white-space: pre;"><span style="color: rgb(14, 0, 255);">end</span></span></div><div  class = 'S3'><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="70895DD7" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="18" data-hashorizontaloverflow="false" data-testid="output_0" style="max-height: 261px; width: 945px;"><div class="textElement">weather</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="C1C2B6D7" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="18" data-hashorizontaloverflow="false" data-testid="output_1" style="max-height: 261px; width: 945px;"><div class="textElement">Normalizing data</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement scrollableOutput" uid="27B9B9E6" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="2859" data-hashorizontaloverflow="false" data-testid="output_2" style="max-height: 261px; width: 945px;"><div class="textElement">No of run: 1 of 5
+Minibatch: 2/7
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.293152 2.237727 2.182303 2.293152 4.475454
+Max Mean Min Now Accu Testing time: 0.001138 0.000800 0.000461 0.000461 0.001599
+Max Mean Min Now CR: 73.600000% 73.600000% 73.600000% 73.600000%
+Max Mean Min Now Classification Loss: 0.512622 0.512622 0.512622 0.512622
+Max Mean Min Now Nodes: 11 11.000000 11 11
+Max Mean Min Now Source 1 CR: 69.400000% 69.400000% 69.400000% 69.400000%
+Network structure: 8  11   2 (Discriminative) | 8  11   8 (Generative)
+
+Minibatch: 4/7
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.420678 2.324524 2.182303 2.420678 9.298097
+Max Mean Min Now Accu Testing time: 0.001138 0.000662 0.000461 0.000462 0.002649
+Max Mean Min Now CR: 83.400000% 76.400000% 72.200000% 83.400000%
+Max Mean Min Now Classification Loss: 0.519288 0.468143 0.372518 0.372518
+Max Mean Min Now Nodes: 19 15.000000 11 19
+Max Mean Min Now Source 1 CR: 69.400000% 67.400000% 65.600000% 67.200000%
+Network structure: 8  19   2 (Discriminative) | 8  19   8 (Generative)
+
+Minibatch: 6/7
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.514434 2.376018 2.182303 2.514434 14.256108
+Max Mean Min Now Accu Testing time: 0.001138 0.000673 0.000300 0.000300 0.004040
+Max Mean Min Now CR: 84.000000% 79.320000% 72.200000% 83.400000%
+Max Mean Min Now Classification Loss: 0.519288 0.421480 0.348104 0.348104
+Max Mean Min Now Nodes: 25 18.400000 11 25
+Max Mean Min Now Source 1 CR: 69.400000% 68.080000% 65.600000% 68.800000%
+Network structure: 8  25   2 (Discriminative) | 8  25   8 (Generative)
+
+Minibatch: 7/7
+Total of samples: 26 Source | 26 Target
+Max Mean Min Now Accu Training time: 2.514434 2.054088 0.122505 0.122505 14.378613
+Max Mean Min Now Accu Testing time: 0.001138 0.000609 0.000223 0.000223 0.004263
+Max Mean Min Now CR: 84.000000% 75.074359% 53.846154% 53.846154%
+Max Mean Min Now Classification Loss: 0.693754 0.466859 0.348104 0.693754
+Max Mean Min Now Nodes: 25 19.500000 11 25
+Max Mean Min Now Source 1 CR: 69.400000% 65.066667% 50.000000% 50.000000%
+Network structure: 8  25   2 (Discriminative) | 8  25   8 (Generative)
+
+No of run: 2 of 5
+Minibatch: 2/7
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.269006 2.226124 2.183242 2.269006 4.452247
+Max Mean Min Now Accu Testing time: 0.000389 0.000300 0.000211 0.000211 0.000599
+Max Mean Min Now CR: 73.600000% 73.600000% 73.600000% 73.600000%
+Max Mean Min Now Classification Loss: 0.525783 0.525783 0.525783 0.525783
+Max Mean Min Now Nodes: 14 14.000000 14 14
+Max Mean Min Now Source 1 CR: 69.400000% 69.400000% 69.400000% 69.400000%
+Network structure: 8  14   2 (Discriminative) | 8  14   8 (Generative)
+
+Minibatch: 4/7
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.467564 2.323115 2.183242 2.467564 9.292459
+Max Mean Min Now Accu Testing time: 0.000389 0.000289 0.000211 0.000237 0.001154
+Max Mean Min Now CR: 83.400000% 77.266667% 73.600000% 83.400000%
+Max Mean Min Now Classification Loss: 0.525783 0.458797 0.406120 0.406120
+Max Mean Min Now Nodes: 21 17.666667 14 21
+Max Mean Min Now Source 1 CR: 69.400000% 61.000000% 48.000000% 48.000000%
+Network structure: 8  21   2 (Discriminative) | 8  21   8 (Generative)
+
+Minibatch: 6/7
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.471632 2.368841 2.183242 2.471632 14.213047
+Max Mean Min Now Accu Testing time: 0.000389 0.000291 0.000211 0.000264 0.001747
+Max Mean Min Now CR: 87.400000% 80.840000% 73.600000% 85.000000%
+Max Mean Min Now Classification Loss: 0.525783 0.404566 0.305817 0.340622
+Max Mean Min Now Nodes: 23 19.600000 14 23
+Max Mean Min Now Source 1 CR: 71.000000% 64.680000% 48.000000% 69.400000%
+Network structure: 8  23   2 (Discriminative) | 8  23   8 (Generative)
+
+Minibatch: 7/7
+Total of samples: 26 Source | 26 Target
+Max Mean Min Now Accu Training time: 2.471632 2.047510 0.119525 0.119525 14.332572
+Max Mean Min Now Accu Testing time: 0.000389 0.000281 0.000211 0.000223 0.001970
+Max Mean Min Now CR: 87.400000% 76.982051% 57.692308% 57.692308%
+Max Mean Min Now Classification Loss: 0.732146 0.459163 0.305817 0.732146
+Max Mean Min Now Nodes: 23 20.166667 14 23
+Max Mean Min Now Source 1 CR: 71.000000% 64.797436% 48.000000% 65.384615%
+Network structure: 8  23   2 (Discriminative) | 8  23   8 (Generative)
+
+No of run: 3 of 5
+Minibatch: 2/7
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.294931 2.235959 2.176987 2.294931 4.471918
+Max Mean Min Now Accu Testing time: 0.000241 0.000220 0.000199 0.000199 0.000440
+Max Mean Min Now CR: 73.600000% 73.600000% 73.600000% 73.600000%
+Max Mean Min Now Classification Loss: 0.503728 0.503728 0.503728 0.503728
+Max Mean Min Now Nodes: 15 15.000000 15 15
+Max Mean Min Now Source 1 CR: 69.400000% 69.400000% 69.400000% 69.400000%
+Network structure: 8  15   2 (Discriminative) | 8  15   8 (Generative)
+
+Minibatch: 4/7
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.488543 2.349292 2.176987 2.488543 9.397170
+Max Mean Min Now Accu Testing time: 0.000281 0.000250 0.000199 0.000280 0.001001
+Max Mean Min Now CR: 82.000000% 76.200000% 73.000000% 82.000000%
+Max Mean Min Now Classification Loss: 0.503728 0.464447 0.433073 0.433073
+Max Mean Min Now Nodes: 22 18.666667 15 22
+Max Mean Min Now Source 1 CR: 69.400000% 59.800000% 44.400000% 44.400000%
+Network structure: 8  22   2 (Discriminative) | 8  22   8 (Generative)
+
+Minibatch: 6/7
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.552618 2.416231 2.176987 2.547599 14.497386
+Max Mean Min Now Accu Testing time: 0.000316 0.000271 0.000199 0.000307 0.001624
+Max Mean Min Now CR: 86.000000% 79.640000% 73.000000% 83.600000%
+Max Mean Min Now Classification Loss: 0.503728 0.408797 0.314527 0.336115
+Max Mean Min Now Nodes: 26 21.000000 15 26
+Max Mean Min Now Source 1 CR: 69.400000% 63.440000% 44.400000% 68.400000%
+Network structure: 8  26   2 (Discriminative) | 8  26   8 (Generative)
+
+Minibatch: 7/7
+Total of samples: 26 Source | 26 Target
+Max Mean Min Now Accu Training time: 2.552618 2.088659 0.123223 0.123223 14.620610
+Max Mean Min Now Accu Testing time: 0.000316 0.000269 0.000199 0.000260 0.001884
+Max Mean Min Now CR: 86.000000% 75.341026% 53.846154% 53.846154%
+Max Mean Min Now Classification Loss: 0.741456 0.464240 0.314527 0.741456
+Max Mean Min Now Nodes: 26 21.833333 15 26
+Max Mean Min Now Source 1 CR: 69.400000% 61.200000% 44.400000% 50.000000%
+Network structure: 8  26   2 (Discriminative) | 8  26   8 (Generative)
+
+No of run: 4 of 5
+Minibatch: 2/7
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.217663 2.173635 2.129608 2.217663 4.347271
+Max Mean Min Now Accu Testing time: 0.000254 0.000218 0.000182 0.000182 0.000436
+Max Mean Min Now CR: 73.600000% 73.600000% 73.600000% 73.600000%
+Max Mean Min Now Classification Loss: 0.529190 0.529190 0.529190 0.529190
+Max Mean Min Now Nodes: 11 11.000000 11 11
+Max Mean Min Now Source 1 CR: 69.400000% 69.400000% 69.400000% 69.400000%
+Network structure: 8  11   2 (Discriminative) | 8  11   8 (Generative)
+
+Minibatch: 4/7
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.429596 2.271438 2.129608 2.429596 9.085751
+Max Mean Min Now Accu Testing time: 0.000291 0.000237 0.000182 0.000221 0.000949
+Max Mean Min Now CR: 82.800000% 76.200000% 72.200000% 82.800000%
+Max Mean Min Now Classification Loss: 0.529190 0.461179 0.365983 0.365983
+Max Mean Min Now Nodes: 19 15.000000 11 19
+Max Mean Min Now Source 1 CR: 69.400000% 66.000000% 63.000000% 63.000000%
+Network structure: 8  19   2 (Discriminative) | 8  19   8 (Generative)
+
+Minibatch: 6/7
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.473602 2.335404 2.129608 2.473602 14.012425
+Max Mean Min Now Accu Testing time: 0.000331 0.000255 0.000182 0.000249 0.001528
+Max Mean Min Now CR: 86.400000% 79.760000% 72.200000% 83.800000%
+Max Mean Min Now Classification Loss: 0.529190 0.403946 0.311564 0.324631
+Max Mean Min Now Nodes: 23 17.800000 11 23
+Max Mean Min Now Source 1 CR: 69.400000% 66.800000% 63.000000% 67.600000%
+Network structure: 8  23   2 (Discriminative) | 8  23   8 (Generative)
+
+Minibatch: 7/7
+Total of samples: 26 Source | 26 Target
+Max Mean Min Now Accu Training time: 2.473602 2.018703 0.118494 0.118494 14.130918
+Max Mean Min Now Accu Testing time: 0.000331 0.000247 0.000182 0.000200 0.001728
+Max Mean Min Now CR: 86.400000% 75.441026% 53.846154% 53.846154%
+Max Mean Min Now Classification Loss: 0.705766 0.454250 0.311564 0.705766
+Max Mean Min Now Nodes: 23 18.666667 11 23
+Max Mean Min Now Source 1 CR: 69.400000% 64.641026% 53.846154% 53.846154%
+Network structure: 8  23   2 (Discriminative) | 8  23   8 (Generative)
+
+No of run: 5 of 5
+Minibatch: 2/7
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.217086 2.174033 2.130980 2.217086 4.348066
+Max Mean Min Now Accu Testing time: 0.000264 0.000230 0.000197 0.000197 0.000461
+Max Mean Min Now CR: 73.600000% 73.600000% 73.600000% 73.600000%
+Max Mean Min Now Classification Loss: 0.537219 0.537219 0.537219 0.537219
+Max Mean Min Now Nodes: 12 12.000000 12 12
+Max Mean Min Now Source 1 CR: 69.400000% 69.400000% 69.400000% 69.400000%
+Network structure: 8  12   2 (Discriminative) | 8  12   8 (Generative)
+
+Minibatch: 4/7
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.401590 2.260129 2.130980 2.401590 9.040517
+Max Mean Min Now Accu Testing time: 0.000274 0.000237 0.000197 0.000212 0.000947
+Max Mean Min Now CR: 82.200000% 76.400000% 73.400000% 82.200000%
+Max Mean Min Now Classification Loss: 0.537219 0.479345 0.431319 0.431319
+Max Mean Min Now Nodes: 19 15.666667 12 19
+Max Mean Min Now Source 1 CR: 69.400000% 62.800000% 53.400000% 53.400000%
+Network structure: 8  19   2 (Discriminative) | 8  19   8 (Generative)
+
+Minibatch: 6/7
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.455448 2.321263 2.130980 2.455448 13.927577
+Max Mean Min Now Accu Testing time: 0.000338 0.000252 0.000197 0.000227 0.001512
+Max Mean Min Now CR: 86.000000% 79.640000% 73.400000% 83.000000%
+Max Mean Min Now Classification Loss: 0.537219 0.423359 0.324149 0.354612
+Max Mean Min Now Nodes: 21 17.600000 12 21
+Max Mean Min Now Source 1 CR: 69.400000% 64.800000% 53.400000% 67.800000%
+Network structure: 8  21   2 (Discriminative) | 8  21   8 (Generative)
+
+Minibatch: 7/7
+Total of samples: 26 Source | 26 Target
+Max Mean Min Now Accu Training time: 2.455448 2.006623 0.118787 0.118787 14.046364
+Max Mean Min Now Accu Testing time: 0.000338 0.000247 0.000197 0.000218 0.001730
+Max Mean Min Now CR: 86.000000% 76.623077% 61.538462% 61.538462%
+Max Mean Min Now Classification Loss: 0.727270 0.474011 0.324149 0.727270
+Max Mean Min Now Nodes: 21 18.166667 12 21
+Max Mean Min Now Source 1 CR: 69.400000% 63.615385% 53.400000% 57.692308%
+Network structure: 8  21   2 (Discriminative) | 8  21   8 (Generative)</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="B9169F01" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="18" data-hashorizontaloverflow="false" data-testid="output_3" style="max-height: 261px; width: 945px;"><div class="textElement">sea</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="6DBB657C" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="18" data-hashorizontaloverflow="false" data-testid="output_4" style="max-height: 261px; width: 945px;"><div class="textElement">Normalizing data</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement scrollableOutput" uid="B1CEEC2E" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="3559" data-hashorizontaloverflow="false" data-testid="output_5" style="max-height: 261px; width: 945px;"><div class="textElement">No of run: 1 of 5
+Minibatch: 2/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.290885 2.260225 2.229565 2.290885 4.520450
+Max Mean Min Now Accu Testing time: 0.000406 0.000297 0.000189 0.000189 0.000595
+Max Mean Min Now CR: 87.000000% 87.000000% 87.000000% 87.000000%
+Max Mean Min Now Classification Loss: 0.328542 0.328542 0.328542 0.328542
+Max Mean Min Now Nodes: 16 16.000000 16 16
+Max Mean Min Now Source 1 CR: 83.400000% 83.400000% 83.400000% 83.400000%
+Network structure: 3  16   2 (Discriminative) | 3  16   3 (Generative)
+
+Minibatch: 10/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.455522 2.368063 2.229565 2.419475 23.680627
+Max Mean Min Now Accu Testing time: 0.000406 0.000259 0.000189 0.000258 0.002589
+Max Mean Min Now CR: 91.200000% 87.288889% 80.400000% 86.200000%
+Max Mean Min Now Classification Loss: 0.417970 0.323810 0.251936 0.355101
+Max Mean Min Now Nodes: 23 21.777778 16 23
+Max Mean Min Now Source 1 CR: 85.800000% 79.044444% 57.600000% 72.200000%
+Network structure: 3  23   2 (Discriminative) | 3  23   3 (Generative)
+
+Minibatch: 20/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.455522 2.388673 2.229565 2.401654 47.773456
+Max Mean Min Now Accu Testing time: 0.000406 0.000256 0.000189 0.000246 0.005128
+Max Mean Min Now CR: 92.400000% 88.305263% 80.400000% 89.200000%
+Max Mean Min Now Classification Loss: 0.417970 0.315355 0.235735 0.303816
+Max Mean Min Now Nodes: 24 22.842105 16 24
+Max Mean Min Now Source 1 CR: 86.200000% 80.884211% 57.600000% 82.400000%
+Network structure: 3  24   2 (Discriminative) | 3  24   3 (Generative)
+
+Minibatch: 30/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.455522 2.394159 2.229565 2.425124 71.824764
+Max Mean Min Now Accu Testing time: 0.000406 0.000256 0.000189 0.000243 0.007679
+Max Mean Min Now CR: 94.200000% 89.282759% 80.400000% 90.800000%
+Max Mean Min Now Classification Loss: 0.417970 0.302971 0.219939 0.315391
+Max Mean Min Now Nodes: 24 23.241379 16 24
+Max Mean Min Now Source 1 CR: 89.600000% 82.737931% 57.600000% 85.800000%
+Network structure: 3  24   2 (Discriminative) | 3  24   3 (Generative)
+
+Minibatch: 34/34
+Total of samples: 167 Source | 167 Target
+Max Mean Min Now Accu Training time: 2.455522 2.345960 0.741747 0.741747 79.762626
+Max Mean Min Now Accu Testing time: 0.000406 0.000255 0.000189 0.000199 0.008671
+Max Mean Min Now CR: 94.200000% 89.533769% 80.400000% 92.814371%
+Max Mean Min Now Classification Loss: 0.417970 0.299832 0.219939 0.274271
+Max Mean Min Now Nodes: 24 23.333333 16 24
+Max Mean Min Now Source 1 CR: 89.600000% 82.801270% 57.600000% 79.041916%
+Network structure: 3  24   2 (Discriminative) | 3  24   3 (Generative)
+
+No of run: 2 of 5
+Minibatch: 2/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.391479 2.335726 2.279973 2.391479 4.671452
+Max Mean Min Now Accu Testing time: 0.000215 0.000207 0.000200 0.000215 0.000414
+Max Mean Min Now CR: 86.600000% 86.600000% 86.600000% 86.600000%
+Max Mean Min Now Classification Loss: 0.345209 0.345209 0.345209 0.345209
+Max Mean Min Now Nodes: 23 23.000000 23 23
+Max Mean Min Now Source 1 CR: 83.200000% 83.200000% 83.200000% 83.200000%
+Network structure: 3  23   2 (Discriminative) | 3  23   3 (Generative)
+
+Minibatch: 10/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.543009 2.453024 2.279973 2.543009 24.530245
+Max Mean Min Now Accu Testing time: 0.000352 0.000264 0.000200 0.000266 0.002642
+Max Mean Min Now CR: 89.800000% 87.600000% 85.800000% 86.800000%
+Max Mean Min Now Classification Loss: 0.449316 0.339547 0.264682 0.359050
+Max Mean Min Now Nodes: 31 28.777778 23 31
+Max Mean Min Now Source 1 CR: 86.600000% 81.311111% 72.800000% 74.800000%
+Network structure: 3  31   2 (Discriminative) | 3  31   3 (Generative)
+
+Minibatch: 20/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.543009 2.471789 2.279973 2.503966 49.435775
+Max Mean Min Now Accu Testing time: 0.000352 0.000269 0.000200 0.000338 0.005376
+Max Mean Min Now CR: 92.800000% 88.284211% 85.400000% 88.600000%
+Max Mean Min Now Classification Loss: 0.449316 0.331425 0.245560 0.309599
+Max Mean Min Now Nodes: 31 29.947368 23 31
+Max Mean Min Now Source 1 CR: 86.600000% 81.673684% 72.800000% 81.200000%
+Network structure: 3  31   2 (Discriminative) | 3  31   3 (Generative)
+
+Minibatch: 30/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.543009 2.477919 2.279973 2.483896 74.337562
+Max Mean Min Now Accu Testing time: 0.000352 0.000270 0.000200 0.000254 0.008110
+Max Mean Min Now CR: 93.400000% 88.593103% 80.400000% 87.000000%
+Max Mean Min Now Classification Loss: 0.449316 0.324306 0.245560 0.364646
+Max Mean Min Now Nodes: 31 30.310345 23 31
+Max Mean Min Now Source 1 CR: 89.400000% 82.793103% 72.800000% 83.000000%
+Network structure: 3  31   2 (Discriminative) | 3  31   3 (Generative)
+
+Minibatch: 34/34
+Total of samples: 167 Source | 167 Target
+Max Mean Min Now Accu Training time: 2.543009 2.428306 0.771160 0.771160 82.562416
+Max Mean Min Now Accu Testing time: 0.000352 0.000270 0.000198 0.000198 0.009171
+Max Mean Min Now CR: 93.400000% 88.921648% 80.400000% 92.814371%
+Max Mean Min Now Classification Loss: 0.449316 0.319342 0.241990 0.284392
+Max Mean Min Now Nodes: 31 30.393939 23 31
+Max Mean Min Now Source 1 CR: 89.400000% 82.801415% 72.800000% 76.646707%
+Network structure: 3  31   2 (Discriminative) | 3  31   3 (Generative)
+
+No of run: 3 of 5
+Minibatch: 2/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.340803 2.272147 2.203490 2.340803 4.544293
+Max Mean Min Now Accu Testing time: 0.000228 0.000214 0.000200 0.000228 0.000428
+Max Mean Min Now CR: 86.600000% 86.600000% 86.600000% 86.600000%
+Max Mean Min Now Classification Loss: 0.334663 0.334663 0.334663 0.334663
+Max Mean Min Now Nodes: 19 19.000000 19 19
+Max Mean Min Now Source 1 CR: 83.200000% 83.200000% 83.200000% 83.200000%
+Network structure: 3  19   2 (Discriminative) | 3  19   3 (Generative)
+
+Minibatch: 10/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.452447 2.404724 2.203490 2.436134 24.047241
+Max Mean Min Now Accu Testing time: 0.000309 0.000245 0.000200 0.000258 0.002446
+Max Mean Min Now CR: 91.600000% 87.377778% 81.200000% 86.400000%
+Max Mean Min Now Classification Loss: 0.406123 0.335918 0.266758 0.352170
+Max Mean Min Now Nodes: 26 24.777778 19 26
+Max Mean Min Now Source 1 CR: 86.000000% 78.066667% 60.000000% 71.600000%
+Network structure: 3  26   2 (Discriminative) | 3  26   3 (Generative)
+
+Minibatch: 20/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.537799 2.430338 2.203490 2.429879 48.606757
+Max Mean Min Now Accu Testing time: 0.000313 0.000253 0.000200 0.000243 0.005051
+Max Mean Min Now CR: 92.800000% 88.242105% 81.200000% 89.200000%
+Max Mean Min Now Classification Loss: 0.406123 0.323815 0.237255 0.305798
+Max Mean Min Now Nodes: 26 25.421053 19 26
+Max Mean Min Now Source 1 CR: 86.000000% 80.252632% 60.000000% 82.400000%
+Network structure: 3  26   2 (Discriminative) | 3  26   3 (Generative)
+
+Minibatch: 30/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.537799 2.434568 2.203490 2.437607 73.037049
+Max Mean Min Now Accu Testing time: 0.000316 0.000255 0.000200 0.000264 0.007640
+Max Mean Min Now CR: 94.200000% 89.096552% 81.200000% 90.400000%
+Max Mean Min Now Classification Loss: 0.406123 0.310326 0.231737 0.321935
+Max Mean Min Now Nodes: 27 25.896552 19 27
+Max Mean Min Now Source 1 CR: 89.200000% 82.255172% 60.000000% 84.600000%
+Network structure: 3  27   2 (Discriminative) | 3  27   3 (Generative)
+
+Minibatch: 34/34
+Total of samples: 167 Source | 167 Target
+Max Mean Min Now Accu Training time: 2.537799 2.386901 0.752027 0.752027 81.154636
+Max Mean Min Now Accu Testing time: 0.000318 0.000254 0.000189 0.000189 0.008635
+Max Mean Min Now CR: 94.200000% 89.351951% 81.200000% 92.814371%
+Max Mean Min Now Classification Loss: 0.406123 0.306738 0.231737 0.283753
+Max Mean Min Now Nodes: 27 26.030303 19 27
+Max Mean Min Now Source 1 CR: 89.200000% 82.377028% 60.000000% 79.041916%
+Network structure: 3  27   2 (Discriminative) | 3  27   3 (Generative)
+
+No of run: 4 of 5
+Minibatch: 2/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.333941 2.282903 2.231865 2.333941 4.565806
+Max Mean Min Now Accu Testing time: 0.000211 0.000203 0.000196 0.000196 0.000407
+Max Mean Min Now CR: 87.800000% 87.800000% 87.800000% 87.800000%
+Max Mean Min Now Classification Loss: 0.328418 0.328418 0.328418 0.328418
+Max Mean Min Now Nodes: 18 18.000000 18 18
+Max Mean Min Now Source 1 CR: 83.800000% 83.800000% 83.800000% 83.800000%
+Network structure: 3  18   2 (Discriminative) | 3  18   3 (Generative)
+
+Minibatch: 10/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.494281 2.397904 2.231865 2.445307 23.979043
+Max Mean Min Now Accu Testing time: 0.000333 0.000252 0.000196 0.000244 0.002521
+Max Mean Min Now CR: 91.200000% 87.666667% 82.400000% 87.000000%
+Max Mean Min Now Classification Loss: 0.398533 0.319695 0.253177 0.341370
+Max Mean Min Now Nodes: 25 23.777778 18 25
+Max Mean Min Now Source 1 CR: 85.800000% 80.133333% 63.200000% 75.600000%
+Network structure: 3  25   2 (Discriminative) | 3  25   3 (Generative)
+
+Minibatch: 20/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.494281 2.410165 2.231865 2.414945 48.203309
+Max Mean Min Now Accu Testing time: 0.000333 0.000254 0.000196 0.000242 0.005082
+Max Mean Min Now CR: 92.800000% 88.547368% 82.400000% 89.400000%
+Max Mean Min Now Classification Loss: 0.398533 0.311661 0.231892 0.302931
+Max Mean Min Now Nodes: 26 24.842105 18 26
+Max Mean Min Now Source 1 CR: 86.000000% 81.515789% 63.200000% 82.400000%
+Network structure: 3  26   2 (Discriminative) | 3  26   3 (Generative)
+
+Minibatch: 30/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.494281 2.415189 2.231865 2.418780 72.455679
+Max Mean Min Now Accu Testing time: 0.000333 0.000255 0.000196 0.000247 0.007655
+Max Mean Min Now CR: 94.200000% 89.462069% 82.400000% 91.200000%
+Max Mean Min Now Classification Loss: 0.398533 0.300491 0.217045 0.311617
+Max Mean Min Now Nodes: 26 25.241379 18 26
+Max Mean Min Now Source 1 CR: 89.600000% 83.117241% 63.200000% 85.800000%
+Network structure: 3  26   2 (Discriminative) | 3  26   3 (Generative)
+
+Minibatch: 34/34
+Total of samples: 167 Source | 167 Target
+Max Mean Min Now Accu Training time: 2.494281 2.366231 0.738078 0.738078 80.451862
+Max Mean Min Now Accu Testing time: 0.000333 0.000255 0.000196 0.000211 0.008673
+Max Mean Min Now CR: 94.200000% 89.703466% 82.400000% 92.814371%
+Max Mean Min Now Classification Loss: 0.398533 0.297335 0.217045 0.278132
+Max Mean Min Now Nodes: 26 25.333333 18 26
+Max Mean Min Now Source 1 CR: 89.600000% 83.122482% 63.200000% 79.041916%
+Network structure: 3  26   2 (Discriminative) | 3  26   3 (Generative)
+
+No of run: 5 of 5
+Minibatch: 2/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.243742 2.200622 2.157502 2.243742 4.401244
+Max Mean Min Now Accu Testing time: 0.000205 0.000197 0.000189 0.000189 0.000394
+Max Mean Min Now CR: 86.800000% 86.800000% 86.800000% 86.800000%
+Max Mean Min Now Classification Loss: 0.345917 0.345917 0.345917 0.345917
+Max Mean Min Now Nodes: 16 16.000000 16 16
+Max Mean Min Now Source 1 CR: 83.200000% 83.200000% 83.200000% 83.200000%
+Network structure: 3  16   2 (Discriminative) | 3  16   3 (Generative)
+
+Minibatch: 10/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.439360 2.348836 2.157502 2.394751 23.488357
+Max Mean Min Now Accu Testing time: 0.000353 0.000242 0.000189 0.000353 0.002425
+Max Mean Min Now CR: 91.600000% 87.800000% 84.600000% 85.800000%
+Max Mean Min Now Classification Loss: 0.376183 0.324316 0.254690 0.367774
+Max Mean Min Now Nodes: 23 21.111111 16 23
+Max Mean Min Now Source 1 CR: 86.200000% 80.600000% 69.600000% 69.600000%
+Network structure: 3  23   2 (Discriminative) | 3  23   3 (Generative)
+
+Minibatch: 20/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.450548 2.375849 2.157502 2.417981 47.516971
+Max Mean Min Now Accu Testing time: 0.000353 0.000253 0.000189 0.000254 0.005051
+Max Mean Min Now CR: 92.200000% 88.252632% 84.000000% 88.800000%
+Max Mean Min Now Classification Loss: 0.402905 0.320954 0.238810 0.306219
+Max Mean Min Now Nodes: 23 22.105263 16 23
+Max Mean Min Now Source 1 CR: 86.200000% 81.336842% 69.600000% 82.000000%
+Network structure: 3  23   2 (Discriminative) | 3  23   3 (Generative)
+
+Minibatch: 30/34
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.510420 2.389979 2.157502 2.460179 71.699357
+Max Mean Min Now Accu Testing time: 0.000353 0.000254 0.000189 0.000254 0.007635
+Max Mean Min Now CR: 93.800000% 88.786207% 83.200000% 88.600000%
+Max Mean Min Now Classification Loss: 0.402905 0.313093 0.238810 0.349166
+Max Mean Min Now Nodes: 24 22.551724 16 24
+Max Mean Min Now Source 1 CR: 89.400000% 82.800000% 69.600000% 83.400000%
+Network structure: 3  24   2 (Discriminative) | 3  24   3 (Generative)
+
+Minibatch: 34/34
+Total of samples: 167 Source | 167 Target
+Max Mean Min Now Accu Training time: 2.510420 2.343364 0.730869 0.730869 79.674393
+Max Mean Min Now Accu Testing time: 0.000353 0.000254 0.000186 0.000186 0.008622
+Max Mean Min Now CR: 93.800000% 89.085284% 83.200000% 92.814371%
+Max Mean Min Now Classification Loss: 0.402905 0.309422 0.238582 0.286111
+Max Mean Min Now Nodes: 24 22.727273 16 24
+Max Mean Min Now Source 1 CR: 89.400000% 82.825621% 69.600000% 77.245509%
+Network structure: 3  24   2 (Discriminative) | 3  24   3 (Generative)</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="85DC91BC" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="18" data-hashorizontaloverflow="false" data-testid="output_6" style="max-height: 261px; width: 945px;"><div class="textElement">hyperplane</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="8AA89302" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="18" data-hashorizontaloverflow="false" data-testid="output_7" style="max-height: 261px; width: 945px;"><div class="textElement">Normalizing data</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement scrollableOutput" uid="50CD0081" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="3559" data-hashorizontaloverflow="false" data-testid="output_8" style="max-height: 261px; width: 945px;"><div class="textElement">No of run: 1 of 5
+Minibatch: 2/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.213814 2.151252 2.088691 2.213814 4.302505
+Max Mean Min Now Accu Testing time: 0.000251 0.000225 0.000199 0.000199 0.000450
+Max Mean Min Now CR: 83.600000% 83.600000% 83.600000% 83.600000%
+Max Mean Min Now Classification Loss: 0.359693 0.359693 0.359693 0.359693
+Max Mean Min Now Nodes: 13 13.000000 13 13
+Max Mean Min Now Source 1 CR: 62.000000% 62.000000% 62.000000% 62.000000%
+Network structure: 4  13   2 (Discriminative) | 4  13   4 (Generative)
+
+Minibatch: 12/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.652983 2.455795 2.088691 2.646274 29.469538
+Max Mean Min Now Accu Testing time: 0.000365 0.000265 0.000199 0.000365 0.003186
+Max Mean Min Now CR: 91.200000% 87.490909% 81.200000% 88.400000%
+Max Mean Min Now Classification Loss: 0.541993 0.333476 0.267227 0.310877
+Max Mean Min Now Nodes: 38 28.454545 13 38
+Max Mean Min Now Source 1 CR: 91.600000% 81.945455% 62.000000% 86.200000%
+Network structure: 4  38   2 (Discriminative) | 4  38   4 (Generative)
+
+Minibatch: 24/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.711240 2.572017 2.088691 2.703858 61.728407
+Max Mean Min Now Accu Testing time: 0.000388 0.000281 0.000199 0.000289 0.006733
+Max Mean Min Now CR: 91.200000% 87.791304% 81.200000% 84.200000%
+Max Mean Min Now Classification Loss: 0.541993 0.328667 0.267227 0.412963
+Max Mean Min Now Nodes: 41 34.347826 13 41
+Max Mean Min Now Source 1 CR: 91.600000% 83.852174% 62.000000% 75.800000%
+Network structure: 4  41   2 (Discriminative) | 4  41   4 (Generative)
+
+Minibatch: 36/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.764417 2.621125 2.088691 2.764417 94.360517
+Max Mean Min Now Accu Testing time: 0.000388 0.000285 0.000199 0.000293 0.010261
+Max Mean Min Now CR: 91.200000% 87.862857% 81.200000% 89.800000%
+Max Mean Min Now Classification Loss: 0.541993 0.332128 0.267227 0.297250
+Max Mean Min Now Nodes: 42 36.714286 13 42
+Max Mean Min Now Source 1 CR: 91.600000% 84.514286% 62.000000% 90.000000%
+Network structure: 4  42   2 (Discriminative) | 4  42   4 (Generative)
+
+Minibatch: 40/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.775440 2.634086 2.088691 2.745942 105.363429
+Max Mean Min Now Accu Testing time: 0.000388 0.000288 0.000199 0.000315 0.011511
+Max Mean Min Now CR: 91.200000% 87.887179% 81.200000% 89.400000%
+Max Mean Min Now Classification Loss: 0.541993 0.332348 0.267227 0.325639
+Max Mean Min Now Nodes: 42 37.256410 13 42
+Max Mean Min Now Source 1 CR: 91.600000% 84.928205% 62.000000% 86.200000%
+Network structure: 4  42   2 (Discriminative) | 4  42   4 (Generative)
+
+No of run: 2 of 5
+Minibatch: 2/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.185150 2.093410 2.001671 2.185150 4.186821
+Max Mean Min Now Accu Testing time: 0.000214 0.000198 0.000182 0.000182 0.000397
+Max Mean Min Now CR: 81.000000% 81.000000% 81.000000% 81.000000%
+Max Mean Min Now Classification Loss: 0.387192 0.387192 0.387192 0.387192
+Max Mean Min Now Nodes: 10 10.000000 10 10
+Max Mean Min Now Source 1 CR: 55.200000% 55.200000% 55.200000% 55.200000%
+Network structure: 4  10   2 (Discriminative) | 4  10   4 (Generative)
+
+Minibatch: 12/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.628176 2.410003 2.001671 2.605569 28.920035
+Max Mean Min Now Accu Testing time: 0.000280 0.000245 0.000182 0.000278 0.002935
+Max Mean Min Now CR: 90.400000% 87.345455% 79.800000% 88.800000%
+Max Mean Min Now Classification Loss: 0.533069 0.339727 0.262199 0.315495
+Max Mean Min Now Nodes: 34 24.909091 10 34
+Max Mean Min Now Source 1 CR: 91.200000% 81.218182% 55.200000% 86.800000%
+Network structure: 4  34   2 (Discriminative) | 4  34   4 (Generative)
+
+Minibatch: 24/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.718267 2.529193 2.001671 2.649202 60.700636
+Max Mean Min Now Accu Testing time: 0.000359 0.000268 0.000182 0.000273 0.006424
+Max Mean Min Now CR: 90.800000% 87.634783% 79.800000% 84.400000%
+Max Mean Min Now Classification Loss: 0.533069 0.333186 0.258373 0.419122
+Max Mean Min Now Nodes: 37 30.652174 10 37
+Max Mean Min Now Source 1 CR: 91.200000% 83.295652% 55.200000% 75.200000%
+Network structure: 4  37   2 (Discriminative) | 4  37   4 (Generative)
+
+Minibatch: 36/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.722112 2.573076 2.001671 2.634926 92.630748
+Max Mean Min Now Accu Testing time: 0.000422 0.000279 0.000182 0.000282 0.010056
+Max Mean Min Now CR: 90.800000% 87.748571% 79.800000% 89.800000%
+Max Mean Min Now Classification Loss: 0.533069 0.334514 0.258373 0.295893
+Max Mean Min Now Nodes: 37 32.828571 10 37
+Max Mean Min Now Source 1 CR: 91.200000% 84.120000% 55.200000% 90.600000%
+Network structure: 4  37   2 (Discriminative) | 4  37   4 (Generative)
+
+Minibatch: 40/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.722112 2.580122 2.001671 2.657575 103.204869
+Max Mean Min Now Accu Testing time: 0.000422 0.000283 0.000182 0.000284 0.011326
+Max Mean Min Now CR: 90.800000% 87.794872% 79.800000% 89.800000%
+Max Mean Min Now Classification Loss: 0.533069 0.334323 0.258373 0.318010
+Max Mean Min Now Nodes: 37 33.256410 10 37
+Max Mean Min Now Source 1 CR: 91.400000% 84.600000% 55.200000% 86.800000%
+Network structure: 4  37   2 (Discriminative) | 4  37   4 (Generative)
+
+No of run: 3 of 5
+Minibatch: 2/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.167876 2.065331 1.962786 2.167876 4.130662
+Max Mean Min Now Accu Testing time: 0.000206 0.000194 0.000182 0.000182 0.000388
+Max Mean Min Now CR: 87.800000% 87.800000% 87.800000% 87.800000%
+Max Mean Min Now Classification Loss: 0.350336 0.350336 0.350336 0.350336
+Max Mean Min Now Nodes: 9 9.000000 9 9
+Max Mean Min Now Source 1 CR: 75.800000% 75.800000% 75.800000% 75.800000%
+Network structure: 4  9  2 (Discriminative) | 4  9  4 (Generative)
+
+Minibatch: 12/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.637023 2.399398 1.962786 2.637023 28.792771
+Max Mean Min Now Accu Testing time: 0.000302 0.000248 0.000182 0.000302 0.002974
+Max Mean Min Now CR: 90.800000% 87.836364% 80.400000% 88.400000%
+Max Mean Min Now Classification Loss: 0.537045 0.339293 0.275371 0.315574
+Max Mean Min Now Nodes: 34 25.090909 9 34
+Max Mean Min Now Source 1 CR: 87.400000% 82.163636% 63.200000% 86.800000%
+Network structure: 4  34   2 (Discriminative) | 4  34   4 (Generative)
+
+Minibatch: 24/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.667179 2.521112 1.962786 2.650959 60.506689
+Max Mean Min Now Accu Testing time: 0.000349 0.000270 0.000182 0.000272 0.006475
+Max Mean Min Now CR: 90.800000% 87.713043% 80.400000% 83.400000%
+Max Mean Min Now Classification Loss: 0.537045 0.333821 0.264310 0.422980
+Max Mean Min Now Nodes: 37 30.739130 9 37
+Max Mean Min Now Source 1 CR: 90.600000% 83.626087% 63.200000% 74.000000%
+Network structure: 4  37   2 (Discriminative) | 4  37   4 (Generative)
+
+Minibatch: 36/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.692995 2.566472 1.962786 2.692995 92.392997
+Max Mean Min Now Accu Testing time: 0.000409 0.000284 0.000182 0.000374 0.010207
+Max Mean Min Now CR: 91.000000% 87.685714% 80.400000% 89.800000%
+Max Mean Min Now Classification Loss: 0.537045 0.335788 0.264310 0.291009
+Max Mean Min Now Nodes: 37 32.885714 9 37
+Max Mean Min Now Source 1 CR: 91.600000% 84.102857% 63.200000% 89.800000%
+Network structure: 4  37   2 (Discriminative) | 4  37   4 (Generative)
+
+Minibatch: 40/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.729698 2.578470 1.962786 2.727981 103.138781
+Max Mean Min Now Accu Testing time: 0.000409 0.000286 0.000182 0.000271 0.011433
+Max Mean Min Now CR: 91.000000% 87.712821% 80.400000% 89.400000%
+Max Mean Min Now Classification Loss: 0.537045 0.336030 0.264310 0.329489
+Max Mean Min Now Nodes: 38 33.333333 9 38
+Max Mean Min Now Source 1 CR: 91.600000% 84.517949% 63.200000% 85.400000%
+Network structure: 4  38   2 (Discriminative) | 4  38   4 (Generative)
+
+No of run: 4 of 5
+Minibatch: 2/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.265736 2.171851 2.077966 2.265736 4.343702
+Max Mean Min Now Accu Testing time: 0.000279 0.000251 0.000223 0.000279 0.000502
+Max Mean Min Now CR: 79.000000% 79.000000% 79.000000% 79.000000%
+Max Mean Min Now Classification Loss: 0.431954 0.431954 0.431954 0.431954
+Max Mean Min Now Nodes: 13 13.000000 13 13
+Max Mean Min Now Source 1 CR: 52.600000% 52.600000% 52.600000% 52.600000%
+Network structure: 4  13   2 (Discriminative) | 4  13   4 (Generative)
+
+Minibatch: 12/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.683389 2.444743 2.077966 2.683389 29.336918
+Max Mean Min Now Accu Testing time: 0.000330 0.000264 0.000213 0.000290 0.003167
+Max Mean Min Now CR: 90.000000% 85.981818% 77.000000% 88.800000%
+Max Mean Min Now Classification Loss: 0.513246 0.358199 0.284239 0.309520
+Max Mean Min Now Nodes: 34 26.727273 13 34
+Max Mean Min Now Source 1 CR: 87.600000% 76.036364% 52.600000% 86.800000%
+Network structure: 4  34   2 (Discriminative) | 4  34   4 (Generative)
+
+Minibatch: 24/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.685549 2.538854 2.077966 2.652041 60.932496
+Max Mean Min Now Accu Testing time: 0.000420 0.000286 0.000213 0.000299 0.006852
+Max Mean Min Now CR: 90.400000% 86.895652% 77.000000% 83.800000%
+Max Mean Min Now Classification Loss: 0.513246 0.341651 0.268360 0.415473
+Max Mean Min Now Nodes: 37 31.521739 13 37
+Max Mean Min Now Source 1 CR: 90.600000% 80.721739% 52.600000% 74.400000%
+Network structure: 4  37   2 (Discriminative) | 4  37   4 (Generative)
+
+Minibatch: 36/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.729648 2.582795 2.077966 2.693285 92.980633
+Max Mean Min Now Accu Testing time: 0.000420 0.000287 0.000213 0.000285 0.010327
+Max Mean Min Now CR: 90.600000% 87.354286% 77.000000% 89.800000%
+Max Mean Min Now Classification Loss: 0.513246 0.336663 0.268360 0.292329
+Max Mean Min Now Nodes: 38 33.571429 13 38
+Max Mean Min Now Source 1 CR: 91.200000% 82.628571% 52.600000% 90.600000%
+Network structure: 4  38   2 (Discriminative) | 4  38   4 (Generative)
+
+Minibatch: 40/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.740307 2.593121 2.077966 2.649521 103.724834
+Max Mean Min Now Accu Testing time: 0.000420 0.000289 0.000213 0.000282 0.011561
+Max Mean Min Now CR: 90.600000% 87.451282% 77.000000% 89.800000%
+Max Mean Min Now Classification Loss: 0.513246 0.336011 0.268360 0.311946
+Max Mean Min Now Nodes: 38 34.025641 13 38
+Max Mean Min Now Source 1 CR: 91.200000% 83.287179% 52.600000% 88.200000%
+Network structure: 4  38   2 (Discriminative) | 4  38   4 (Generative)
+
+No of run: 5 of 5
+Minibatch: 2/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.072017 2.012992 1.953967 2.072017 4.025984
+Max Mean Min Now Accu Testing time: 0.000209 0.000193 0.000177 0.000177 0.000386
+Max Mean Min Now CR: 85.200000% 85.200000% 85.200000% 85.200000%
+Max Mean Min Now Classification Loss: 0.355952 0.355952 0.355952 0.355952
+Max Mean Min Now Nodes: 8 8.000000 8 8
+Max Mean Min Now Source 1 CR: 67.200000% 67.200000% 67.200000% 67.200000%
+Network structure: 4  8  2 (Discriminative) | 4  8  4 (Generative)
+
+Minibatch: 12/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.594318 2.371436 1.953967 2.594318 28.457236
+Max Mean Min Now Accu Testing time: 0.000326 0.000251 0.000177 0.000273 0.003014
+Max Mean Min Now CR: 90.800000% 87.745455% 80.800000% 88.000000%
+Max Mean Min Now Classification Loss: 0.542600 0.333235 0.262647 0.313196
+Max Mean Min Now Nodes: 33 23.727273 8 33
+Max Mean Min Now Source 1 CR: 89.800000% 82.636364% 64.200000% 86.000000%
+Network structure: 4  33   2 (Discriminative) | 4  33   4 (Generative)
+
+Minibatch: 24/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.742692 2.504009 1.953967 2.705019 60.096212
+Max Mean Min Now Accu Testing time: 0.000352 0.000267 0.000177 0.000281 0.006417
+Max Mean Min Now CR: 90.800000% 87.843478% 80.800000% 84.200000%
+Max Mean Min Now Classification Loss: 0.542600 0.328856 0.261851 0.416046
+Max Mean Min Now Nodes: 36 29.565217 8 36
+Max Mean Min Now Source 1 CR: 91.000000% 84.104348% 64.200000% 75.000000%
+Network structure: 4  36   2 (Discriminative) | 4  36   4 (Generative)
+
+Minibatch: 36/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.742692 2.548739 1.953967 2.623724 91.754615
+Max Mean Min Now Accu Testing time: 0.000395 0.000277 0.000177 0.000280 0.009962
+Max Mean Min Now CR: 90.800000% 87.817143% 80.800000% 89.800000%
+Max Mean Min Now Classification Loss: 0.542600 0.332973 0.261851 0.293809
+Max Mean Min Now Nodes: 36 31.771429 8 36
+Max Mean Min Now Source 1 CR: 91.000000% 84.468571% 64.200000% 90.200000%
+Network structure: 4  36   2 (Discriminative) | 4  36   4 (Generative)
+
+Minibatch: 40/40
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.742692 2.560651 1.953967 2.704058 102.426029
+Max Mean Min Now Accu Testing time: 0.000395 0.000278 0.000177 0.000281 0.011138
+Max Mean Min Now CR: 90.800000% 87.841026% 80.800000% 89.000000%
+Max Mean Min Now Classification Loss: 0.542600 0.333738 0.261851 0.339263
+Max Mean Min Now Nodes: 37 32.230769 8 37
+Max Mean Min Now Source 1 CR: 91.000000% 84.846154% 64.200000% 85.400000%
+Network structure: 4  37   2 (Discriminative) | 4  37   4 (Generative)</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="9A75B935" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="18" data-hashorizontaloverflow="false" data-testid="output_9" style="max-height: 261px; width: 945px;"><div class="textElement">kdd</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="7CEC52CF" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="18" data-hashorizontaloverflow="false" data-testid="output_10" style="max-height: 261px; width: 945px;"><div class="textElement">Normalizing data</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement scrollableOutput" uid="7616B15B" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="3559" data-hashorizontaloverflow="false" data-testid="output_11" style="max-height: 261px; width: 945px;"><div class="textElement">No of run: 1 of 5
+Minibatch: 2/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.721496 2.663388 2.605281 2.721496 5.326777
+Max Mean Min Now Accu Testing time: 0.000401 0.000351 0.000300 0.000300 0.000702
+Max Mean Min Now CR: 99.400000% 99.400000% 99.400000% 99.400000%
+Max Mean Min Now Classification Loss: 0.040513 0.040513 0.040513 0.040513
+Max Mean Min Now Nodes: 21 21.000000 21 21
+Max Mean Min Now Source 1 CR: 99.600000% 99.600000% 99.600000% 99.600000%
+Network structure: 40  21   2 (Discriminative) | 40  21  40 (Generative)
+
+Minibatch: 50/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.509934 3.301302 2.605281 3.333433 165.065077
+Max Mean Min Now Accu Testing time: 0.000489 0.000405 0.000300 0.000489 0.020228
+Max Mean Min Now CR: 100.000000% 99.710204% 99.000000% 99.600000%
+Max Mean Min Now Classification Loss: 0.069176 0.013248 0.000937 0.017347
+Max Mean Min Now Nodes: 51 47.387755 21 50
+Max Mean Min Now Source 1 CR: 100.000000% 99.767347% 98.800000% 99.800000%
+Network structure: 40  50   2 (Discriminative) | 40  50  40 (Generative)
+
+Minibatch: 100/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.509934 3.335451 2.605281 3.366284 333.545085
+Max Mean Min Now Accu Testing time: 0.000652 0.000414 0.000300 0.000397 0.041439
+Max Mean Min Now CR: 100.000000% 99.749495% 99.000000% 100.000000%
+Max Mean Min Now Classification Loss: 0.069176 0.012631 0.000281 0.000610
+Max Mean Min Now Nodes: 51 48.838384 21 51
+Max Mean Min Now Source 1 CR: 100.000000% 99.789899% 98.800000% 99.600000%
+Network structure: 40  51   2 (Discriminative) | 40  51  40 (Generative)
+
+Minibatch: 150/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.536058 3.364140 2.605281 3.421453 504.620929
+Max Mean Min Now Accu Testing time: 0.000825 0.000422 0.000300 0.000418 0.063286
+Max Mean Min Now CR: 100.000000% 99.720805% 98.800000% 99.600000%
+Max Mean Min Now Classification Loss: 0.075485 0.012889 0.000281 0.006849
+Max Mean Min Now Nodes: 52 49.630872 21 52
+Max Mean Min Now Source 1 CR: 100.000000% 99.753020% 98.400000% 100.000000%
+Network structure: 40  52   2 (Discriminative) | 40  52  40 (Generative)
+
+Minibatch: 167/167
+Total of samples: 333 Source | 333 Target
+Max Mean Min Now Accu Training time: 3.536058 3.364426 2.152483 2.152483 561.859101
+Max Mean Min Now Accu Testing time: 0.000825 0.000424 0.000300 0.000439 0.070754
+Max Mean Min Now CR: 100.000000% 99.729516% 98.800000% 99.699700%
+Max Mean Min Now Classification Loss: 0.075485 0.012626 0.000149 0.013373
+Max Mean Min Now Nodes: 52 49.873494 21 52
+Max Mean Min Now Source 1 CR: 100.000000% 99.753012% 98.400000% 100.000000%
+Network structure: 40  52   2 (Discriminative) | 40  52  40 (Generative)
+
+No of run: 2 of 5
+Minibatch: 2/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.610598 2.514392 2.418187 2.610598 5.028785
+Max Mean Min Now Accu Testing time: 0.000388 0.000331 0.000274 0.000274 0.000663
+Max Mean Min Now CR: 98.600000% 98.600000% 98.600000% 98.600000%
+Max Mean Min Now Classification Loss: 0.049329 0.049329 0.049329 0.049329
+Max Mean Min Now Nodes: 17 17.000000 17 17
+Max Mean Min Now Source 1 CR: 98.800000% 98.800000% 98.800000% 98.800000%
+Network structure: 40  17   2 (Discriminative) | 40  17  40 (Generative)
+
+Minibatch: 50/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.263635 3.084228 2.418187 3.150749 154.211411
+Max Mean Min Now Accu Testing time: 0.000455 0.000382 0.000274 0.000379 0.019114
+Max Mean Min Now CR: 100.000000% 99.677551% 98.600000% 99.600000%
+Max Mean Min Now Classification Loss: 0.111151 0.014942 0.000857 0.011043
+Max Mean Min Now Nodes: 44 39.938776 17 44
+Max Mean Min Now Source 1 CR: 100.000000% 99.693878% 98.800000% 99.800000%
+Network structure: 40  44   2 (Discriminative) | 40  44  40 (Generative)
+
+Minibatch: 100/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.321668 3.136591 2.418187 3.180698 313.659050
+Max Mean Min Now Accu Testing time: 0.000516 0.000389 0.000274 0.000389 0.038924
+Max Mean Min Now CR: 100.000000% 99.733333% 98.600000% 100.000000%
+Max Mean Min Now Classification Loss: 0.111151 0.012951 0.000437 0.000950
+Max Mean Min Now Nodes: 44 41.989899 17 44
+Max Mean Min Now Source 1 CR: 100.000000% 99.753535% 98.800000% 99.600000%
+Network structure: 40  44   2 (Discriminative) | 40  44  40 (Generative)
+
+Minibatch: 150/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.321668 3.154868 2.418187 3.165976 473.230150
+Max Mean Min Now Accu Testing time: 0.000602 0.000392 0.000274 0.000382 0.058855
+Max Mean Min Now CR: 100.000000% 99.718121% 98.600000% 99.800000%
+Max Mean Min Now Classification Loss: 0.111151 0.013096 0.000084 0.003951
+Max Mean Min Now Nodes: 45 42.892617 17 45
+Max Mean Min Now Source 1 CR: 100.000000% 99.711409% 98.800000% 100.000000%
+Network structure: 40  45   2 (Discriminative) | 40  45  40 (Generative)
+
+Minibatch: 167/167
+Total of samples: 333 Source | 333 Target
+Max Mean Min Now Accu Training time: 3.321668 3.151934 2.020556 2.020556 526.373058
+Max Mean Min Now Accu Testing time: 0.000602 0.000393 0.000274 0.000369 0.065687
+Max Mean Min Now CR: 100.000000% 99.712649% 98.200000% 99.699700%
+Max Mean Min Now Classification Loss: 0.111151 0.012964 0.000084 0.003252
+Max Mean Min Now Nodes: 45 43.108434 17 45
+Max Mean Min Now Source 1 CR: 100.000000% 99.712649% 98.800000% 99.699700%
+Network structure: 40  45   2 (Discriminative) | 40  45  40 (Generative)
+
+No of run: 3 of 5
+Minibatch: 2/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.658132 2.567760 2.477389 2.658132 5.135521
+Max Mean Min Now Accu Testing time: 0.000313 0.000299 0.000284 0.000284 0.000597
+Max Mean Min Now CR: 99.000000% 99.000000% 99.000000% 99.000000%
+Max Mean Min Now Classification Loss: 0.043964 0.043964 0.043964 0.043964
+Max Mean Min Now Nodes: 20 20.000000 20 20
+Max Mean Min Now Source 1 CR: 99.000000% 99.000000% 99.000000% 99.000000%
+Network structure: 40  20   2 (Discriminative) | 40  20  40 (Generative)
+
+Minibatch: 50/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.518436 3.311926 2.477389 3.518436 165.596286
+Max Mean Min Now Accu Testing time: 0.000718 0.000418 0.000284 0.000397 0.020892
+Max Mean Min Now CR: 100.000000% 99.673469% 98.800000% 99.600000%
+Max Mean Min Now Classification Loss: 0.053939 0.013077 0.000278 0.016511
+Max Mean Min Now Nodes: 52 47.755102 20 52
+Max Mean Min Now Source 1 CR: 100.000000% 99.697959% 98.200000% 99.800000%
+Network structure: 40  52   2 (Discriminative) | 40  52  40 (Generative)
+
+Minibatch: 100/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.631716 3.368228 2.477389 3.440002 336.822760
+Max Mean Min Now Accu Testing time: 0.000718 0.000418 0.000284 0.000409 0.041804
+Max Mean Min Now CR: 100.000000% 99.723232% 98.800000% 100.000000%
+Max Mean Min Now Classification Loss: 0.053939 0.012798 0.000278 0.001400
+Max Mean Min Now Nodes: 52 49.898990 20 52
+Max Mean Min Now Source 1 CR: 100.000000% 99.753535% 98.200000% 99.400000%
+Network structure: 40  52   2 (Discriminative) | 40  52  40 (Generative)
+
+Minibatch: 150/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.631716 3.390475 2.477389 3.457420 508.571249
+Max Mean Min Now Accu Testing time: 0.000718 0.000418 0.000284 0.000406 0.062775
+Max Mean Min Now CR: 100.000000% 99.744966% 98.800000% 99.800000%
+Max Mean Min Now Classification Loss: 0.053939 0.012174 0.000152 0.006826
+Max Mean Min Now Nodes: 53 50.711409 20 53
+Max Mean Min Now Source 1 CR: 100.000000% 99.755705% 98.200000% 100.000000%
+Network structure: 40  53   2 (Discriminative) | 40  53  40 (Generative)
+
+Minibatch: 167/167
+Total of samples: 333 Source | 333 Target
+Max Mean Min Now Accu Training time: 3.631716 3.387941 2.154474 2.154474 565.786074
+Max Mean Min Now Accu Testing time: 0.000718 0.000418 0.000284 0.000366 0.069842
+Max Mean Min Now CR: 100.000000% 99.749998% 98.800000% 99.699700%
+Max Mean Min Now Classification Loss: 0.053939 0.011912 0.000152 0.002694
+Max Mean Min Now Nodes: 53 50.945783 20 53
+Max Mean Min Now Source 1 CR: 100.000000% 99.761446% 98.200000% 100.000000%
+Network structure: 40  53   2 (Discriminative) | 40  53  40 (Generative)
+
+No of run: 4 of 5
+Minibatch: 2/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.516296 2.462360 2.408424 2.516296 4.924721
+Max Mean Min Now Accu Testing time: 0.000302 0.000290 0.000277 0.000277 0.000579
+Max Mean Min Now CR: 98.200000% 98.200000% 98.200000% 98.200000%
+Max Mean Min Now Classification Loss: 0.053635 0.053635 0.053635 0.053635
+Max Mean Min Now Nodes: 13 13.000000 13 13
+Max Mean Min Now Source 1 CR: 97.800000% 97.800000% 97.800000% 97.800000%
+Network structure: 40  13   2 (Discriminative) | 40  13  40 (Generative)
+
+Minibatch: 50/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.060823 2.898629 2.408424 2.966016 144.931440
+Max Mean Min Now Accu Testing time: 0.000754 0.000365 0.000277 0.000359 0.018273
+Max Mean Min Now CR: 100.000000% 99.636735% 98.200000% 99.400000%
+Max Mean Min Now Classification Loss: 0.094336 0.017551 0.000896 0.021653
+Max Mean Min Now Nodes: 34 30.224490 13 34
+Max Mean Min Now Source 1 CR: 100.000000% 99.616327% 97.800000% 99.800000%
+Network structure: 40  34   2 (Discriminative) | 40  34  40 (Generative)
+
+Minibatch: 100/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.066650 2.937304 2.408424 2.953789 293.730430
+Max Mean Min Now Accu Testing time: 0.000754 0.000371 0.000277 0.000376 0.037083
+Max Mean Min Now CR: 100.000000% 99.672727% 98.200000% 100.000000%
+Max Mean Min Now Classification Loss: 0.094336 0.015177 0.000421 0.001310
+Max Mean Min Now Nodes: 34 31.878788 13 33
+Max Mean Min Now Source 1 CR: 100.000000% 99.676768% 97.800000% 99.600000%
+Network structure: 40  33   2 (Discriminative) | 40  33  40 (Generative)
+
+Minibatch: 150/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.107808 2.952833 2.408424 2.964774 442.924914
+Max Mean Min Now Accu Testing time: 0.000754 0.000373 0.000277 0.000354 0.056016
+Max Mean Min Now CR: 100.000000% 99.675168% 98.200000% 99.200000%
+Max Mean Min Now Classification Loss: 0.094336 0.014672 0.000296 0.018891
+Max Mean Min Now Nodes: 34 32.114094 13 32
+Max Mean Min Now Source 1 CR: 100.000000% 99.683221% 97.800000% 99.800000%
+Network structure: 40  32   2 (Discriminative) | 40  32  40 (Generative)
+
+Minibatch: 167/167
+Total of samples: 333 Source | 333 Target
+Max Mean Min Now Accu Training time: 3.107808 2.948537 1.921793 1.921793 492.405636
+Max Mean Min Now Accu Testing time: 0.000754 0.000373 0.000277 0.000300 0.062324
+Max Mean Min Now CR: 100.000000% 99.692167% 98.200000% 99.699700%
+Max Mean Min Now Classification Loss: 0.094336 0.014154 0.000250 0.015289
+Max Mean Min Now Nodes: 34 32.102410 13 32
+Max Mean Min Now Source 1 CR: 100.000000% 99.687952% 97.800000% 100.000000%
+Network structure: 40  32   2 (Discriminative) | 40  32  40 (Generative)
+
+No of run: 5 of 5
+Minibatch: 2/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.707136 2.608148 2.509160 2.707136 5.216295
+Max Mean Min Now Accu Testing time: 0.000313 0.000299 0.000286 0.000286 0.000599
+Max Mean Min Now CR: 99.000000% 99.000000% 99.000000% 99.000000%
+Max Mean Min Now Classification Loss: 0.049738 0.049738 0.049738 0.049738
+Max Mean Min Now Nodes: 18 18.000000 18 18
+Max Mean Min Now Source 1 CR: 98.000000% 98.000000% 98.000000% 98.000000%
+Network structure: 40  18   2 (Discriminative) | 40  18  40 (Generative)
+
+Minibatch: 50/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.266131 3.141964 2.509160 3.201759 157.098194
+Max Mean Min Now Accu Testing time: 0.000650 0.000399 0.000286 0.000489 0.019963
+Max Mean Min Now CR: 100.000000% 99.685714% 99.000000% 99.600000%
+Max Mean Min Now Classification Loss: 0.055585 0.012323 0.000578 0.014300
+Max Mean Min Now Nodes: 43 40.469388 18 43
+Max Mean Min Now Source 1 CR: 100.000000% 99.726531% 98.000000% 99.800000%
+Network structure: 40  43   2 (Discriminative) | 40  43  40 (Generative)
+
+Minibatch: 100/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.295887 3.178490 2.509160 3.212767 317.848951
+Max Mean Min Now Accu Testing time: 0.000650 0.000404 0.000286 0.000451 0.040353
+Max Mean Min Now CR: 100.000000% 99.753535% 99.000000% 100.000000%
+Max Mean Min Now Classification Loss: 0.055585 0.010653 0.000490 0.001712
+Max Mean Min Now Nodes: 44 42.191919 18 43
+Max Mean Min Now Source 1 CR: 100.000000% 99.787879% 98.000000% 100.000000%
+Network structure: 40  43   2 (Discriminative) | 40  43  40 (Generative)
+
+Minibatch: 150/167
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.295887 3.189392 2.509160 3.217965 478.408871
+Max Mean Min Now Accu Testing time: 0.000650 0.000409 0.000286 0.000385 0.061276
+Max Mean Min Now CR: 100.000000% 99.769128% 98.600000% 99.600000%
+Max Mean Min Now Classification Loss: 0.055585 0.010606 0.000256 0.019986
+Max Mean Min Now Nodes: 44 42.543624 18 44
+Max Mean Min Now Source 1 CR: 100.000000% 99.787919% 98.000000% 100.000000%
+Network structure: 40  44   2 (Discriminative) | 40  44  40 (Generative)
+
+Minibatch: 167/167
+Total of samples: 333 Source | 333 Target
+Max Mean Min Now Accu Training time: 3.356808 3.189296 2.028530 2.028530 532.612509
+Max Mean Min Now Accu Testing time: 0.000650 0.000409 0.000286 0.000406 0.068281
+Max Mean Min Now CR: 100.000000% 99.778914% 98.600000% 99.699700%
+Max Mean Min Now Classification Loss: 0.055585 0.010362 0.000256 0.008144
+Max Mean Min Now Nodes: 44 42.692771 18 44
+Max Mean Min Now Source 1 CR: 100.000000% 99.787952% 98.000000% 100.000000%
+Network structure: 40  44   2 (Discriminative) | 40  44  40 (Generative)</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="EF1EE012" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="18" data-hashorizontaloverflow="false" data-testid="output_12" style="max-height: 261px; width: 945px;"><div class="textElement">susy</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="E456BCAD" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="18" data-hashorizontaloverflow="false" data-testid="output_13" style="max-height: 261px; width: 945px;"><div class="textElement">Normalizing data</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement scrollableOutput" uid="66255B98" data-scroll-top="0" data-scroll-left="0" data-width="915" data-height="3559" data-hashorizontaloverflow="false" data-testid="output_14" style="max-height: 261px; width: 945px;"><div class="textElement">No of run: 1 of 5
+Minibatch: 2/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.346122 2.280654 2.215187 2.346122 4.561308
+Max Mean Min Now Accu Testing time: 0.000273 0.000242 0.000211 0.000211 0.000484
+Max Mean Min Now CR: 40.000000% 40.000000% 40.000000% 40.000000%
+Max Mean Min Now Classification Loss: 0.720833 0.720833 0.720833 0.720833
+Max Mean Min Now Nodes: 12 12.000000 12 12
+Max Mean Min Now Source 1 CR: 57.000000% 57.000000% 57.000000% 57.000000%
+Network structure: 18  12   2 (Discriminative) | 18  12  18 (Generative)
+
+Minibatch: 500/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.887556 2.652452 2.215187 2.629684 1326.225782
+Max Mean Min Now Accu Testing time: 0.000677 0.000333 0.000211 0.000330 0.166413
+Max Mean Min Now CR: 88.200000% 74.168737% 35.600000% 83.000000%
+Max Mean Min Now Classification Loss: 1.228012 0.522005 0.312812 0.368139
+Max Mean Min Now Nodes: 19 18.272545 12 19
+Max Mean Min Now Source 1 CR: 76.200000% 63.578357% 32.200000% 46.400000%
+Network structure: 18  19   2 (Discriminative) | 18  19  18 (Generative)
+
+Minibatch: 1000/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.887556 2.653965 2.215187 2.612503 2653.965027
+Max Mean Min Now Accu Testing time: 0.000677 0.000332 0.000211 0.000293 0.331966
+Max Mean Min Now CR: 92.000000% 79.485686% 35.600000% 82.600000%
+Max Mean Min Now Classification Loss: 1.228012 0.435556 0.217798 0.358545
+Max Mean Min Now Nodes: 19 18.636637 12 19
+Max Mean Min Now Source 1 CR: 77.400000% 62.063463% 26.600000% 72.000000%
+Network structure: 18  19   2 (Discriminative) | 18  19  18 (Generative)
+
+Minibatch: 1500/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.065613 2.651734 2.215187 2.607189 3977.600287
+Max Mean Min Now Accu Testing time: 0.000677 0.000330 0.000211 0.000294 0.494562
+Max Mean Min Now CR: 94.600000% 83.139827% 35.600000% 92.000000%
+Max Mean Min Now Classification Loss: 1.228012 0.367988 0.144816 0.246184
+Max Mean Min Now Nodes: 19 18.757839 12 19
+Max Mean Min Now Source 1 CR: 77.400000% 57.957438% 26.600000% 41.800000%
+Network structure: 18  19   2 (Discriminative) | 18  19  18 (Generative)
+
+Minibatch: 1667/1667
+Total of samples: 333 Source | 333 Target
+Max Mean Min Now Accu Training time: 3.065613 2.651360 1.629734 1.629734 4419.817799
+Max Mean Min Now Accu Testing time: 0.000677 0.000329 0.000211 0.000372 0.549039
+Max Mean Min Now CR: 94.600000% 83.799681% 35.600000% 67.867868%
+Max Mean Min Now Classification Loss: 1.228012 0.354353 0.144028 0.570345
+Max Mean Min Now Nodes: 19 18.782113 12 19
+Max Mean Min Now Source 1 CR: 77.400000% 56.571873% 25.600000% 41.141141%
+Network structure: 18  19   2 (Discriminative) | 18  19  18 (Generative)
+
+No of run: 2 of 5
+Minibatch: 2/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.540396 2.446981 2.353567 2.540396 4.893962
+Max Mean Min Now Accu Testing time: 0.000238 0.000234 0.000231 0.000231 0.000468
+Max Mean Min Now CR: 40.000000% 40.000000% 40.000000% 40.000000%
+Max Mean Min Now Classification Loss: 0.718965 0.718965 0.718965 0.718965
+Max Mean Min Now Nodes: 16 16.000000 16 16
+Max Mean Min Now Source 1 CR: 57.000000% 57.000000% 57.000000% 57.000000%
+Network structure: 18  16   2 (Discriminative) | 18  16  18 (Generative)
+
+Minibatch: 500/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.998815 2.836513 2.353567 2.818995 1418.256428
+Max Mean Min Now Accu Testing time: 0.000620 0.000361 0.000231 0.000338 0.180520
+Max Mean Min Now CR: 86.800000% 67.658116% 35.000000% 85.800000%
+Max Mean Min Now Classification Loss: 1.744691 0.641981 0.311402 0.341496
+Max Mean Min Now Nodes: 30 29.673347 16 30
+Max Mean Min Now Source 1 CR: 74.800000% 65.515832% 33.600000% 66.400000%
+Network structure: 18  30   2 (Discriminative) | 18  30  18 (Generative)
+
+Minibatch: 1000/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 5.057393 2.839961 2.353567 2.871910 2839.960534
+Max Mean Min Now Accu Testing time: 0.002143 0.000363 0.000231 0.000331 0.362908
+Max Mean Min Now CR: 91.000000% 74.514915% 35.000000% 89.000000%
+Max Mean Min Now Classification Loss: 1.744691 0.529331 0.217860 0.249675
+Max Mean Min Now Nodes: 30 29.836837 16 30
+Max Mean Min Now Source 1 CR: 77.400000% 65.813013% 25.200000% 74.600000%
+Network structure: 18  30   2 (Discriminative) | 18  30  18 (Generative)
+
+Minibatch: 1500/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 5.057393 2.839264 2.353567 2.814757 4258.895971
+Max Mean Min Now Accu Testing time: 0.002143 0.000361 0.000231 0.000429 0.542059
+Max Mean Min Now CR: 94.800000% 79.539827% 35.000000% 91.600000%
+Max Mean Min Now Classification Loss: 1.744691 0.435060 0.149687 0.259704
+Max Mean Min Now Nodes: 30 29.891261 16 30
+Max Mean Min Now Source 1 CR: 77.400000% 62.028552% 25.200000% 35.800000%
+Network structure: 18  30   2 (Discriminative) | 18  30  18 (Generative)
+
+Minibatch: 1667/1667
+Total of samples: 333 Source | 333 Target
+Max Mean Min Now Accu Training time: 5.057393 2.838201 1.819191 1.819191 4731.281412
+Max Mean Min Now Accu Testing time: 0.002143 0.000361 0.000231 0.000383 0.601339
+Max Mean Min Now CR: 94.800000% 80.535339% 35.000000% 74.474474%
+Max Mean Min Now Classification Loss: 1.744691 0.415141 0.147764 0.452910
+Max Mean Min Now Nodes: 30 29.902161 16 30
+Max Mean Min Now Source 1 CR: 77.400000% 60.625555% 25.200000% 74.174174%
+Network structure: 18  30   2 (Discriminative) | 18  30  18 (Generative)
+
+No of run: 3 of 5
+Minibatch: 2/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.347417 2.299220 2.251024 2.347417 4.598441
+Max Mean Min Now Accu Testing time: 0.000238 0.000224 0.000211 0.000211 0.000449
+Max Mean Min Now CR: 40.000000% 40.000000% 40.000000% 40.000000%
+Max Mean Min Now Classification Loss: 0.730796 0.730796 0.730796 0.730796
+Max Mean Min Now Nodes: 11 11.000000 11 11
+Max Mean Min Now Source 1 CR: 57.000000% 57.000000% 57.000000% 57.000000%
+Network structure: 18  11   2 (Discriminative) | 18  11  18 (Generative)
+
+Minibatch: 500/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.788620 2.598641 2.251024 2.576043 1299.320597
+Max Mean Min Now Accu Testing time: 0.000604 0.000308 0.000211 0.000356 0.154125
+Max Mean Min Now CR: 88.000000% 70.736273% 35.600000% 81.600000%
+Max Mean Min Now Classification Loss: 1.414737 0.567908 0.304125 0.368559
+Max Mean Min Now Nodes: 19 18.585170 11 19
+Max Mean Min Now Source 1 CR: 74.400000% 65.692184% 34.800000% 71.600000%
+Network structure: 18  19   2 (Discriminative) | 18  19  18 (Generative)
+
+Minibatch: 1000/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.788620 2.600482 2.251024 2.579250 2600.482080
+Max Mean Min Now Accu Testing time: 0.000604 0.000307 0.000211 0.000301 0.306711
+Max Mean Min Now CR: 91.400000% 76.673674% 35.600000% 81.600000%
+Max Mean Min Now Classification Loss: 1.414737 0.474105 0.219712 0.393954
+Max Mean Min Now Nodes: 19 18.792793 11 19
+Max Mean Min Now Source 1 CR: 77.400000% 65.805606% 26.000000% 70.400000%
+Network structure: 18  19   2 (Discriminative) | 18  19  18 (Generative)
+
+Minibatch: 1500/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.788620 2.598864 2.251024 2.611382 3898.295409
+Max Mean Min Now Accu Testing time: 0.000604 0.000305 0.000211 0.000282 0.456975
+Max Mean Min Now CR: 95.200000% 81.305270% 35.600000% 91.800000%
+Max Mean Min Now Classification Loss: 1.414737 0.392823 0.142893 0.270171
+Max Mean Min Now Nodes: 19 18.861908 11 19
+Max Mean Min Now Source 1 CR: 78.000000% 62.320080% 26.000000% 36.800000%
+Network structure: 18  19   2 (Discriminative) | 18  19  18 (Generative)
+
+Minibatch: 1667/1667
+Total of samples: 333 Source | 333 Target
+Max Mean Min Now Accu Training time: 2.788620 2.598114 1.580384 1.580384 4331.055855
+Max Mean Min Now Accu Testing time: 0.000604 0.000304 0.000211 0.000252 0.506828
+Max Mean Min Now CR: 95.200000% 82.098778% 35.600000% 63.363363%
+Max Mean Min Now Classification Loss: 1.414737 0.377539 0.142893 0.658771
+Max Mean Min Now Nodes: 19 18.875750 11 19
+Max Mean Min Now Source 1 CR: 78.000000% 60.816788% 25.600000% 68.168168%
+Network structure: 18  19   2 (Discriminative) | 18  19  18 (Generative)
+
+No of run: 4 of 5
+Minibatch: 2/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.421451 2.356207 2.290963 2.421451 4.712414
+Max Mean Min Now Accu Testing time: 0.000222 0.000221 0.000219 0.000219 0.000441
+Max Mean Min Now CR: 40.000000% 40.000000% 40.000000% 40.000000%
+Max Mean Min Now Classification Loss: 0.718630 0.718630 0.718630 0.718630
+Max Mean Min Now Nodes: 14 14.000000 14 14
+Max Mean Min Now Source 1 CR: 57.000000% 57.000000% 57.000000% 57.000000%
+Network structure: 18  14   2 (Discriminative) | 18  14  18 (Generative)
+
+Minibatch: 500/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.913582 2.769535 2.290963 2.754643 1384.767463
+Max Mean Min Now Accu Testing time: 0.000715 0.000336 0.000219 0.000332 0.168127
+Max Mean Min Now CR: 85.800000% 63.684970% 34.000000% 84.200000%
+Max Mean Min Now Classification Loss: 1.879091 0.703463 0.341826 0.342797
+Max Mean Min Now Nodes: 31 29.645291 14 31
+Max Mean Min Now Source 1 CR: 74.200000% 65.919439% 36.400000% 70.800000%
+Network structure: 18  31   2 (Discriminative) | 18  31  18 (Generative)
+
+Minibatch: 1000/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.975104 2.790872 2.290963 2.867221 2790.871960
+Max Mean Min Now Accu Testing time: 0.000715 0.000340 0.000219 0.000418 0.340098
+Max Mean Min Now CR: 91.000000% 72.265265% 34.000000% 79.600000%
+Max Mean Min Now Classification Loss: 1.879091 0.559398 0.238283 0.441684
+Max Mean Min Now Nodes: 31 30.323323 14 31
+Max Mean Min Now Source 1 CR: 76.400000% 66.683083% 28.600000% 70.400000%
+Network structure: 18  31   2 (Discriminative) | 18  31  18 (Generative)
+
+Minibatch: 1500/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.975104 2.793043 2.290963 2.779176 4189.565046
+Max Mean Min Now Accu Testing time: 0.000769 0.000340 0.000219 0.000324 0.509345
+Max Mean Min Now CR: 94.800000% 78.258706% 34.000000% 91.600000%
+Max Mean Min Now Classification Loss: 1.879091 0.452287 0.140704 0.268725
+Max Mean Min Now Nodes: 31 30.549033 14 31
+Max Mean Min Now Source 1 CR: 77.400000% 62.642695% 27.200000% 46.400000%
+Network structure: 18  31   2 (Discriminative) | 18  31  18 (Generative)
+
+Minibatch: 1667/1667
+Total of samples: 333 Source | 333 Target
+Max Mean Min Now Accu Training time: 3.077704 2.793297 1.918402 1.918402 4656.426347
+Max Mean Min Now Accu Testing time: 0.000769 0.000339 0.000219 0.000334 0.565456
+Max Mean Min Now CR: 95.000000% 79.417691% 34.000000% 73.873874%
+Max Mean Min Now Classification Loss: 1.879091 0.430597 0.136425 0.509423
+Max Mean Min Now Nodes: 31 30.594238 14 31
+Max Mean Min Now Source 1 CR: 77.400000% 61.137677% 25.400000% 69.969970%
+Network structure: 18  31   2 (Discriminative) | 18  31  18 (Generative)
+
+No of run: 5 of 5
+Minibatch: 2/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.470809 2.375482 2.280154 2.470809 4.750963
+Max Mean Min Now Accu Testing time: 0.000313 0.000278 0.000243 0.000313 0.000556
+Max Mean Min Now CR: 40.200000% 40.200000% 40.200000% 40.200000%
+Max Mean Min Now Classification Loss: 0.743380 0.743380 0.743380 0.743380
+Max Mean Min Now Nodes: 12 12.000000 12 12
+Max Mean Min Now Source 1 CR: 57.000000% 57.000000% 57.000000% 57.000000%
+Network structure: 18  12   2 (Discriminative) | 18  12  18 (Generative)
+
+Minibatch: 500/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.071469 2.624811 2.280154 2.691843 1312.405335
+Max Mean Min Now Accu Testing time: 0.000797 0.000313 0.000243 0.000298 0.156353
+Max Mean Min Now CR: 85.800000% 68.911423% 35.400000% 81.400000%
+Max Mean Min Now Classification Loss: 1.481697 0.608355 0.325122 0.375944
+Max Mean Min Now Nodes: 21 19.683367 12 21
+Max Mean Min Now Source 1 CR: 74.400000% 65.694990% 34.000000% 68.400000%
+Network structure: 18  21   2 (Discriminative) | 18  21  18 (Generative)
+
+Minibatch: 1000/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.071469 2.629854 2.280154 2.647770 2629.854169
+Max Mean Min Now Accu Testing time: 0.000797 0.000313 0.000243 0.000308 0.312762
+Max Mean Min Now CR: 91.200000% 73.806006% 35.400000% 78.400000%
+Max Mean Min Now Classification Loss: 1.481697 0.530335 0.233374 0.426849
+Max Mean Min Now Nodes: 22 20.608609 12 22
+Max Mean Min Now Source 1 CR: 75.800000% 66.613413% 33.600000% 69.600000%
+Network structure: 18  22   2 (Discriminative) | 18  22  18 (Generative)
+
+Minibatch: 1500/1667
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.071469 2.634338 2.280154 2.608886 3951.506265
+Max Mean Min Now Accu Testing time: 0.000797 0.000312 0.000243 0.000299 0.468392
+Max Mean Min Now CR: 94.800000% 79.200000% 35.400000% 91.600000%
+Max Mean Min Now Classification Loss: 1.481697 0.432955 0.139463 0.235117
+Max Mean Min Now Nodes: 22 21.072715 12 22
+Max Mean Min Now Source 1 CR: 79.000000% 62.061107% 27.400000% 39.000000%
+Network structure: 18  22   2 (Discriminative) | 18  22  18 (Generative)
+
+Minibatch: 1667/1667
+Total of samples: 333 Source | 333 Target
+Max Mean Min Now Accu Training time: 3.071469 2.634333 1.665984 1.665984 4391.432358
+Max Mean Min Now Accu Testing time: 0.000797 0.000312 0.000243 0.000336 0.520686
+Max Mean Min Now CR: 94.800000% 80.240321% 35.400000% 74.174174%
+Max Mean Min Now Classification Loss: 1.481697 0.414208 0.138598 0.535291
+Max Mean Min Now Nodes: 22 21.165666 12 22
+Max Mean Min Now Source 1 CR: 79.000000% 60.988400% 25.600000% 75.075075%
+Network structure: 18  22   2 (Discriminative) | 18  22  18 (Generative)</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="337E5501" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="18" data-hashorizontaloverflow="false" data-testid="output_15" style="max-height: 261px; width: 945px;"><div class="textElement">kitti</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="F3E03CBE" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="18" data-hashorizontaloverflow="false" data-testid="output_16" style="max-height: 261px; width: 945px;"><div class="textElement">Normalizing data</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement scrollableOutput" uid="368AA9A2" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="2859" data-hashorizontaloverflow="false" data-testid="output_17" style="max-height: 261px; width: 945px;"><div class="textElement">No of run: 1 of 5
+Minibatch: 2/9
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.788398 2.713359 2.638320 2.788398 5.426717
+Max Mean Min Now Accu Testing time: 0.000609 0.000546 0.000484 0.000484 0.001093
+Max Mean Min Now CR: 82.200000% 82.200000% 82.200000% 82.200000%
+Max Mean Min Now Classification Loss: 0.739871 0.739871 0.739871 0.739871
+Max Mean Min Now Nodes: 21 21.000000 21 21
+Max Mean Min Now Source 1 CR: 93.400000% 93.400000% 93.400000% 93.400000%
+Network structure: 55  21   8 (Discriminative) | 55  21  55 (Generative)
+
+Minibatch: 3/9
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.980532 2.802416 2.638320 2.980532 8.407249
+Max Mean Min Now Accu Testing time: 0.000609 0.000528 0.000484 0.000491 0.001584
+Max Mean Min Now CR: 82.600000% 82.400000% 82.200000% 82.600000%
+Max Mean Min Now Classification Loss: 0.739871 0.728465 0.717060 0.717060
+Max Mean Min Now Nodes: 25 23.000000 21 25
+Max Mean Min Now Source 1 CR: 93.400000% 82.600000% 71.800000% 71.800000%
+Network structure: 55  25   8 (Discriminative) | 55  25  55 (Generative)
+
+Minibatch: 6/9
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.198396 2.962084 2.638320 3.198396 17.772504
+Max Mean Min Now Accu Testing time: 0.000609 0.000490 0.000417 0.000417 0.002940
+Max Mean Min Now CR: 82.600000% 68.520000% 36.600000% 36.600000%
+Max Mean Min Now Classification Loss: 1.295949 0.916705 0.717060 1.295949
+Max Mean Min Now Nodes: 37 29.000000 21 37
+Max Mean Min Now Source 1 CR: 94.200000% 78.240000% 51.800000% 80.000000%
+Network structure: 55  37   8 (Discriminative) | 55  37  55 (Generative)
+
+Minibatch: 9/9
+Total of samples: 182 Source | 182 Target
+Max Mean Min Now Accu Training time: 3.461890 2.853767 1.093014 1.093014 25.683905
+Max Mean Min Now Accu Testing time: 0.000609 0.000479 0.000315 0.000315 0.004315
+Max Mean Min Now CR: 82.600000% 64.080495% 36.600000% 56.043956%
+Max Mean Min Now Classification Loss: 2.004839 1.160683 0.717060 2.004839
+Max Mean Min Now Nodes: 43 33.875000 21 43
+Max Mean Min Now Source 1 CR: 94.200000% 71.256044% 51.648352% 51.648352%
+Network structure: 55  43   8 (Discriminative) | 55  43  55 (Generative)
+
+No of run: 2 of 5
+Minibatch: 2/9
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.786559 2.696337 2.606115 2.786559 5.392674
+Max Mean Min Now Accu Testing time: 0.000391 0.000373 0.000354 0.000354 0.000745
+Max Mean Min Now CR: 82.800000% 82.800000% 82.800000% 82.800000%
+Max Mean Min Now Classification Loss: 0.727665 0.727665 0.727665 0.727665
+Max Mean Min Now Nodes: 21 21.000000 21 21
+Max Mean Min Now Source 1 CR: 94.400000% 94.400000% 94.400000% 94.400000%
+Network structure: 55  21   8 (Discriminative) | 55  21  55 (Generative)
+
+Minibatch: 3/9
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.948092 2.780255 2.606115 2.948092 8.340765
+Max Mean Min Now Accu Testing time: 0.000496 0.000414 0.000354 0.000496 0.001241
+Max Mean Min Now CR: 83.200000% 83.000000% 82.800000% 83.200000%
+Max Mean Min Now Classification Loss: 0.727665 0.691166 0.654668 0.654668
+Max Mean Min Now Nodes: 25 23.000000 21 25
+Max Mean Min Now Source 1 CR: 94.400000% 91.500000% 88.600000% 88.600000%
+Network structure: 55  25   8 (Discriminative) | 55  25  55 (Generative)
+
+Minibatch: 6/9
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.195911 2.940990 2.606115 3.195911 17.645938
+Max Mean Min Now Accu Testing time: 0.000551 0.000453 0.000354 0.000523 0.002720
+Max Mean Min Now CR: 83.200000% 80.520000% 77.000000% 82.400000%
+Max Mean Min Now Classification Loss: 0.885134 0.792304 0.654668 0.885134
+Max Mean Min Now Nodes: 37 29.000000 21 37
+Max Mean Min Now Source 1 CR: 94.800000% 81.560000% 62.000000% 68.000000%
+Network structure: 55  37   8 (Discriminative) | 55  37  55 (Generative)
+
+Minibatch: 9/9
+Total of samples: 182 Source | 182 Target
+Max Mean Min Now Accu Training time: 3.511913 2.843729 1.090535 1.090535 25.593557
+Max Mean Min Now Accu Testing time: 0.000551 0.000455 0.000354 0.000361 0.004096
+Max Mean Min Now CR: 83.200000% 71.837363% 51.098901% 51.098901%
+Max Mean Min Now Classification Loss: 2.195850 1.110668 0.654668 2.195850
+Max Mean Min Now Nodes: 42 33.625000 21 42
+Max Mean Min Now Source 1 CR: 94.800000% 69.945330% 37.362637% 37.362637%
+Network structure: 55  42   8 (Discriminative) | 55  42  55 (Generative)
+
+No of run: 3 of 5
+Minibatch: 2/9
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.883161 2.815365 2.747569 2.883161 5.630730
+Max Mean Min Now Accu Testing time: 0.000401 0.000393 0.000386 0.000401 0.000786
+Max Mean Min Now CR: 82.800000% 82.800000% 82.800000% 82.800000%
+Max Mean Min Now Classification Loss: 0.744593 0.744593 0.744593 0.744593
+Max Mean Min Now Nodes: 25 25.000000 25 25
+Max Mean Min Now Source 1 CR: 93.400000% 93.400000% 93.400000% 93.400000%
+Network structure: 55  25   8 (Discriminative) | 55  25  55 (Generative)
+
+Minibatch: 3/9
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.976368 2.869033 2.747569 2.976368 8.607098
+Max Mean Min Now Accu Testing time: 0.000493 0.000426 0.000386 0.000493 0.001279
+Max Mean Min Now CR: 83.400000% 83.100000% 82.800000% 83.400000%
+Max Mean Min Now Classification Loss: 0.744593 0.702102 0.659611 0.659611
+Max Mean Min Now Nodes: 29 27.000000 25 29
+Max Mean Min Now Source 1 CR: 93.400000% 89.100000% 84.800000% 84.800000%
+Network structure: 55  29   8 (Discriminative) | 55  29  55 (Generative)
+
+Minibatch: 6/9
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.327074 3.051420 2.747569 3.327074 18.308520
+Max Mean Min Now Accu Testing time: 0.000617 0.000459 0.000386 0.000437 0.002756
+Max Mean Min Now CR: 83.400000% 79.720000% 74.200000% 81.400000%
+Max Mean Min Now Classification Loss: 0.952026 0.809790 0.659611 0.952026
+Max Mean Min Now Nodes: 40 32.800000 25 40
+Max Mean Min Now Source 1 CR: 94.200000% 83.080000% 58.400000% 84.600000%
+Network structure: 55  40   8 (Discriminative) | 55  40  55 (Generative)
+
+Minibatch: 9/9
+Total of samples: 182 Source | 182 Target
+Max Mean Min Now Accu Training time: 3.477089 2.927001 1.109793 1.109793 26.343006
+Max Mean Min Now Accu Testing time: 0.000645 0.000472 0.000316 0.000316 0.004244
+Max Mean Min Now CR: 83.400000% 70.968407% 49.200000% 52.747253%
+Max Mean Min Now Classification Loss: 2.052513 1.136100 0.659611 2.052513
+Max Mean Min Now Nodes: 45 37.125000 25 45
+Max Mean Min Now Source 1 CR: 94.200000% 72.851648% 36.813187% 36.813187%
+Network structure: 55  45   8 (Discriminative) | 55  45  55 (Generative)
+
+No of run: 4 of 5
+Minibatch: 2/9
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.910164 2.823682 2.737200 2.910164 5.647364
+Max Mean Min Now Accu Testing time: 0.000374 0.000374 0.000373 0.000374 0.000747
+Max Mean Min Now CR: 83.800000% 83.800000% 83.800000% 83.800000%
+Max Mean Min Now Classification Loss: 0.710479 0.710479 0.710479 0.710479
+Max Mean Min Now Nodes: 26 26.000000 26 26
+Max Mean Min Now Source 1 CR: 93.800000% 93.800000% 93.800000% 93.800000%
+Network structure: 55  26   8 (Discriminative) | 55  26  55 (Generative)
+
+Minibatch: 3/9
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.059659 2.902341 2.737200 3.059659 8.707024
+Max Mean Min Now Accu Testing time: 0.000556 0.000434 0.000373 0.000556 0.001303
+Max Mean Min Now CR: 83.800000% 82.600000% 81.400000% 81.400000%
+Max Mean Min Now Classification Loss: 0.710479 0.709630 0.708780 0.708780
+Max Mean Min Now Nodes: 30 28.000000 26 30
+Max Mean Min Now Source 1 CR: 93.800000% 93.800000% 93.800000% 93.800000%
+Network structure: 55  30   8 (Discriminative) | 55  30  55 (Generative)
+
+Minibatch: 6/9
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.362731 3.081154 2.737200 3.362731 18.486922
+Max Mean Min Now Accu Testing time: 0.000556 0.000477 0.000373 0.000552 0.002860
+Max Mean Min Now CR: 83.800000% 76.440000% 60.800000% 80.600000%
+Max Mean Min Now Classification Loss: 1.133663 0.853857 0.708780 0.863927
+Max Mean Min Now Nodes: 42 34.000000 26 42
+Max Mean Min Now Source 1 CR: 95.200000% 85.440000% 61.600000% 82.800000%
+Network structure: 55  42   8 (Discriminative) | 55  42  55 (Generative)
+
+Minibatch: 9/9
+Total of samples: 182 Source | 182 Target
+Max Mean Min Now Accu Training time: 3.522213 2.951922 1.130243 1.130243 26.567300
+Max Mean Min Now Accu Testing time: 0.000566 0.000479 0.000373 0.000373 0.004310
+Max Mean Min Now CR: 83.800000% 72.599451% 54.395604% 54.395604%
+Max Mean Min Now Classification Loss: 2.012583 1.166727 0.708780 2.012583
+Max Mean Min Now Nodes: 48 38.875000 26 48
+Max Mean Min Now Source 1 CR: 95.200000% 73.919505% 43.956044% 43.956044%
+Network structure: 55  48   8 (Discriminative) | 55  48  55 (Generative)
+
+No of run: 5 of 5
+Minibatch: 2/9
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.914929 2.814329 2.713729 2.914929 5.628659
+Max Mean Min Now Accu Testing time: 0.000391 0.000385 0.000379 0.000379 0.000770
+Max Mean Min Now CR: 82.600000% 82.600000% 82.600000% 82.600000%
+Max Mean Min Now Classification Loss: 0.701046 0.701046 0.701046 0.701046
+Max Mean Min Now Nodes: 25 25.000000 25 25
+Max Mean Min Now Source 1 CR: 83.800000% 83.800000% 83.800000% 83.800000%
+Network structure: 55  25   8 (Discriminative) | 55  25  55 (Generative)
+
+Minibatch: 3/9
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.003162 2.877274 2.713729 3.003162 8.631821
+Max Mean Min Now Accu Testing time: 0.000558 0.000443 0.000379 0.000558 0.001328
+Max Mean Min Now CR: 82.600000% 80.000000% 77.400000% 77.400000%
+Max Mean Min Now Classification Loss: 0.854979 0.778012 0.701046 0.854979
+Max Mean Min Now Nodes: 29 27.000000 25 29
+Max Mean Min Now Source 1 CR: 83.800000% 74.600000% 65.400000% 65.400000%
+Network structure: 55  29   8 (Discriminative) | 55  29  55 (Generative)
+
+Minibatch: 6/9
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.345394 3.052558 2.713729 3.345394 18.315345
+Max Mean Min Now Accu Testing time: 0.000558 0.000469 0.000379 0.000489 0.002816
+Max Mean Min Now CR: 82.600000% 66.000000% 33.200000% 33.200000%
+Max Mean Min Now Classification Loss: 1.295426 0.944955 0.701046 1.295426
+Max Mean Min Now Nodes: 41 33.000000 25 41
+Max Mean Min Now Source 1 CR: 85.000000% 66.360000% 32.600000% 65.000000%
+Network structure: 55  41   8 (Discriminative) | 55  41  55 (Generative)
+
+Minibatch: 9/9
+Total of samples: 182 Source | 182 Target
+Max Mean Min Now Accu Training time: 3.499130 2.940009 1.220139 1.220139 26.460085
+Max Mean Min Now Accu Testing time: 0.000558 0.000470 0.000378 0.000378 0.004231
+Max Mean Min Now CR: 82.600000% 62.068407% 33.200000% 52.747253%
+Max Mean Min Now Classification Loss: 2.466804 1.352367 0.701046 2.466804
+Max Mean Min Now Nodes: 47 37.875000 25 47
+Max Mean Min Now Source 1 CR: 85.000000% 59.220604% 32.600000% 35.164835%
+Network structure: 55  47   8 (Discriminative) | 55  47  55 (Generative)</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="38B3FCDD" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="18" data-hashorizontaloverflow="false" data-testid="output_18" style="max-height: 261px; width: 945px;"><div class="textElement">hepmass</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="7D36F01B" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="18" data-hashorizontaloverflow="false" data-testid="output_19" style="max-height: 261px; width: 945px;"><div class="textElement">Normalizing data</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement scrollableOutput" uid="FBB77EA0" data-scroll-top="null" data-scroll-left="null" data-width="915" data-height="3559" data-hashorizontaloverflow="false" data-testid="output_20" style="max-height: 261px; width: 945px;"><div class="textElement">No of run: 1 of 5
+Minibatch: 2/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.472534 2.407740 2.342945 2.472534 4.815479
+Max Mean Min Now Accu Testing time: 0.000281 0.000274 0.000267 0.000267 0.000548
+Max Mean Min Now CR: 66.800000% 66.800000% 66.800000% 66.800000%
+Max Mean Min Now Classification Loss: 0.589474 0.589474 0.589474 0.589474
+Max Mean Min Now Nodes: 13 13.000000 13 13
+Max Mean Min Now Source 1 CR: 78.400000% 78.400000% 78.400000% 78.400000%
+Network structure: 28  13   2 (Discriminative) | 28  13  28 (Generative)
+
+Minibatch: 1050/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.970343 2.813513 2.342945 2.790179 2954.188910
+Max Mean Min Now Accu Testing time: 0.000667 0.000353 0.000267 0.000324 0.370509
+Max Mean Min Now CR: 92.400000% 85.180553% 42.400000% 89.400000%
+Max Mean Min Now Classification Loss: 1.292408 0.329875 0.183094 0.244024
+Max Mean Min Now Nodes: 28 27.002860 13 27
+Max Mean Min Now Source 1 CR: 83.000000% 70.193518% 37.800000% 75.200000%
+Network structure: 28  27   2 (Discriminative) | 28  27  28 (Generative)
+
+Minibatch: 2100/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.003446 2.818208 2.342945 2.805511 5918.235908
+Max Mean Min Now Accu Testing time: 0.000711 0.000354 0.000267 0.000345 0.742542
+Max Mean Min Now CR: 94.800000% 87.515007% 42.400000% 93.000000%
+Max Mean Min Now Classification Loss: 1.292408 0.289238 0.159962 0.202268
+Max Mean Min Now Nodes: 28 27.402096 13 28
+Max Mean Min Now Source 1 CR: 83.000000% 71.930253% 37.800000% 74.800000%
+Network structure: 28  28   2 (Discriminative) | 28  28  28 (Generative)
+
+Minibatch: 3150/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.072339 2.822516 2.342945 2.832630 8890.924202
+Max Mean Min Now Accu Testing time: 0.000711 0.000354 0.000267 0.000438 1.114710
+Max Mean Min Now CR: 95.000000% 88.433534% 42.400000% 90.600000%
+Max Mean Min Now Classification Loss: 1.292408 0.274006 0.153576 0.239073
+Max Mean Min Now Nodes: 29 27.627818 13 29
+Max Mean Min Now Source 1 CR: 83.000000% 72.424833% 37.800000% 73.200000%
+Network structure: 28  29   2 (Discriminative) | 28  29  28 (Generative)
+
+Minibatch: 3500/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.072339 2.824869 2.342945 2.812407 9887.040360
+Max Mean Min Now Accu Testing time: 0.000711 0.000354 0.000267 0.000338 1.238773
+Max Mean Min Now CR: 99.000000% 88.661389% 42.400000% 97.600000%
+Max Mean Min Now Classification Loss: 1.292408 0.271639 0.113566 0.132186
+Max Mean Min Now Nodes: 29 27.765076 13 29
+Max Mean Min Now Source 1 CR: 83.000000% 72.546213% 37.800000% 64.200000%
+Network structure: 28  29   2 (Discriminative) | 28  29  28 (Generative)
+
+No of run: 2 of 5
+Minibatch: 2/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.567123 2.490401 2.413680 2.567123 4.980802
+Max Mean Min Now Accu Testing time: 0.000273 0.000257 0.000240 0.000273 0.000513
+Max Mean Min Now CR: 68.800000% 68.800000% 68.800000% 68.800000%
+Max Mean Min Now Classification Loss: 0.596393 0.596393 0.596393 0.596393
+Max Mean Min Now Nodes: 15 15.000000 15 15
+Max Mean Min Now Source 1 CR: 28.800000% 28.800000% 28.800000% 28.800000%
+Network structure: 28  15   2 (Discriminative) | 28  15  28 (Generative)
+
+Minibatch: 1050/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.914959 2.755524 2.413680 2.727257 2893.300192
+Max Mean Min Now Accu Testing time: 0.000736 0.000345 0.000240 0.000335 0.362348
+Max Mean Min Now CR: 92.000000% 85.080267% 50.000000% 89.800000%
+Max Mean Min Now Classification Loss: 0.869487 0.335992 0.204835 0.229002
+Max Mean Min Now Nodes: 25 24.006673 15 24
+Max Mean Min Now Source 1 CR: 81.200000% 70.026311% 28.800000% 72.000000%
+Network structure: 28  24   2 (Discriminative) | 28  24  28 (Generative)
+
+Minibatch: 2100/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.914959 2.752201 2.413680 2.748644 5779.622198
+Max Mean Min Now Accu Testing time: 0.000736 0.000344 0.000240 0.000353 0.721931
+Max Mean Min Now CR: 95.000000% 87.229443% 50.000000% 92.400000%
+Max Mean Min Now Classification Loss: 0.869487 0.294019 0.152291 0.213905
+Max Mean Min Now Nodes: 25 24.003335 15 24
+Max Mean Min Now Source 1 CR: 81.200000% 70.372082% 28.800000% 71.600000%
+Network structure: 28  24   2 (Discriminative) | 28  24  28 (Generative)
+
+Minibatch: 3150/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.059743 2.754355 2.413680 2.788957 8676.217265
+Max Mean Min Now Accu Testing time: 0.000780 0.000344 0.000240 0.000337 1.084378
+Max Mean Min Now CR: 95.400000% 88.003112% 50.000000% 87.800000%
+Max Mean Min Now Classification Loss: 0.869487 0.276957 0.147645 0.262467
+Max Mean Min Now Nodes: 25 24.100984 15 25
+Max Mean Min Now Source 1 CR: 81.200000% 69.511527% 28.800000% 70.800000%
+Network structure: 28  25   2 (Discriminative) | 28  25  28 (Generative)
+
+Minibatch: 3500/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.059743 2.757533 2.413680 2.832465 9651.366197
+Max Mean Min Now Accu Testing time: 0.000780 0.000344 0.000240 0.000426 1.204879
+Max Mean Min Now CR: 98.800000% 88.322149% 50.000000% 96.200000%
+Max Mean Min Now Classification Loss: 0.869487 0.271847 0.056829 0.110977
+Max Mean Min Now Nodes: 26 24.265219 15 26
+Max Mean Min Now Source 1 CR: 83.800000% 69.516833% 28.800000% 39.400000%
+Network structure: 28  26   2 (Discriminative) | 28  26  28 (Generative)
+
+No of run: 3 of 5
+Minibatch: 2/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.651698 2.557453 2.463207 2.651698 5.114906
+Max Mean Min Now Accu Testing time: 0.000284 0.000256 0.000228 0.000284 0.000512
+Max Mean Min Now CR: 79.800000% 79.800000% 79.800000% 79.800000%
+Max Mean Min Now Classification Loss: 0.458096 0.458096 0.458096 0.458096
+Max Mean Min Now Nodes: 18 18.000000 18 18
+Max Mean Min Now Source 1 CR: 29.000000% 29.000000% 29.000000% 29.000000%
+Network structure: 28  18   2 (Discriminative) | 28  18  28 (Generative)
+
+Minibatch: 1050/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.048097 2.895898 2.463207 2.863266 3040.693319
+Max Mean Min Now Accu Testing time: 0.000797 0.000366 0.000228 0.000354 0.384548
+Max Mean Min Now CR: 92.600000% 86.306959% 67.200000% 89.800000%
+Max Mean Min Now Classification Loss: 0.755883 0.312545 0.201321 0.234650
+Max Mean Min Now Nodes: 31 30.967588 18 31
+Max Mean Min Now Source 1 CR: 81.800000% 71.153861% 29.000000% 71.200000%
+Network structure: 28  31   2 (Discriminative) | 28  31  28 (Generative)
+
+Minibatch: 2100/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.134290 2.890360 2.463207 2.879320 6069.756757
+Max Mean Min Now Accu Testing time: 0.000819 0.000366 0.000228 0.000349 0.768567
+Max Mean Min Now CR: 94.600000% 87.790853% 67.200000% 92.600000%
+Max Mean Min Now Classification Loss: 0.755883 0.280864 0.150478 0.198735
+Max Mean Min Now Nodes: 31 30.983802 18 31
+Max Mean Min Now Source 1 CR: 81.800000% 71.257646% 29.000000% 70.000000%
+Network structure: 28  31   2 (Discriminative) | 28  31  28 (Generative)
+
+Minibatch: 3150/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.134290 2.890994 2.463207 2.918100 9106.630472
+Max Mean Min Now Accu Testing time: 0.000819 0.000365 0.000228 0.000357 1.149583
+Max Mean Min Now CR: 95.200000% 88.583614% 67.200000% 89.800000%
+Max Mean Min Now Classification Loss: 0.755883 0.264433 0.142409 0.254637
+Max Mean Min Now Nodes: 32 31.020324 18 32
+Max Mean Min Now Source 1 CR: 81.800000% 70.645284% 29.000000% 72.800000%
+Network structure: 28  32   2 (Discriminative) | 28  32  28 (Generative)
+
+Minibatch: 3500/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.134290 2.894553 2.463207 2.897030 10130.933903
+Max Mean Min Now Accu Testing time: 0.000819 0.000366 0.000228 0.000347 1.279747
+Max Mean Min Now CR: 98.600000% 88.820920% 67.200000% 96.000000%
+Max Mean Min Now Classification Loss: 0.755883 0.260878 0.052247 0.120772
+Max Mean Min Now Nodes: 32 31.118320 18 32
+Max Mean Min Now Source 1 CR: 81.800000% 70.616976% 29.000000% 42.400000%
+Network structure: 28  32   2 (Discriminative) | 28  32  28 (Generative)
+
+No of run: 4 of 5
+Minibatch: 2/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.532821 2.470944 2.409067 2.532821 4.941887
+Max Mean Min Now Accu Testing time: 0.000323 0.000295 0.000268 0.000323 0.000590
+Max Mean Min Now CR: 78.000000% 78.000000% 78.000000% 78.000000%
+Max Mean Min Now Classification Loss: 0.489182 0.489182 0.489182 0.489182
+Max Mean Min Now Nodes: 16 16.000000 16 16
+Max Mean Min Now Source 1 CR: 59.200000% 59.200000% 59.200000% 59.200000%
+Network structure: 28  16   2 (Discriminative) | 28  16  28 (Generative)
+
+Minibatch: 1050/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.123142 2.977080 2.409067 2.991251 3125.934360
+Max Mean Min Now Accu Testing time: 0.000769 0.000377 0.000268 0.000427 0.395432
+Max Mean Min Now CR: 92.400000% 85.567207% 45.800000% 88.600000%
+Max Mean Min Now Classification Loss: 1.389808 0.324881 0.193145 0.248151
+Max Mean Min Now Nodes: 34 33.948522 16 34
+Max Mean Min Now Source 1 CR: 84.200000% 70.864633% 35.600000% 70.400000%
+Network structure: 28  34   2 (Discriminative) | 28  34  28 (Generative)
+
+Minibatch: 2100/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.576365 2.976358 2.409067 2.971131 6250.351712
+Max Mean Min Now Accu Testing time: 0.000869 0.000377 0.000268 0.000332 0.791468
+Max Mean Min Now CR: 94.000000% 86.803621% 45.800000% 89.600000%
+Max Mean Min Now Classification Loss: 1.389808 0.301389 0.153650 0.256996
+Max Mean Min Now Nodes: 34 33.974273 16 34
+Max Mean Min Now Source 1 CR: 84.200000% 71.441067% 35.600000% 72.400000%
+Network structure: 28  34   2 (Discriminative) | 28  34  28 (Generative)
+
+Minibatch: 3150/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.576365 2.973757 2.409067 2.938283 9367.335561
+Max Mean Min Now Accu Testing time: 0.000869 0.000377 0.000268 0.000367 1.186259
+Max Mean Min Now CR: 94.800000% 87.349698% 45.800000% 90.800000%
+Max Mean Min Now Classification Loss: 1.389808 0.291005 0.153650 0.240467
+Max Mean Min Now Nodes: 34 33.982852 16 34
+Max Mean Min Now Source 1 CR: 84.200000% 71.450302% 35.600000% 73.000000%
+Network structure: 28  34   2 (Discriminative) | 28  34  28 (Generative)
+
+Minibatch: 3500/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.576365 2.972963 2.409067 2.950756 10405.371249
+Max Mean Min Now Accu Testing time: 0.000869 0.000377 0.000268 0.000381 1.317967
+Max Mean Min Now CR: 98.600000% 87.435267% 45.800000% 96.000000%
+Max Mean Min Now Classification Loss: 1.389808 0.290280 0.096659 0.176461
+Max Mean Min Now Nodes: 34 33.984567 16 34
+Max Mean Min Now Source 1 CR: 84.200000% 71.269849% 35.600000% 45.800000%
+Network structure: 28  34   2 (Discriminative) | 28  34  28 (Generative)
+
+No of run: 5 of 5
+Minibatch: 2/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 2.706476 2.607362 2.508248 2.706476 5.214724
+Max Mean Min Now Accu Testing time: 0.000302 0.000263 0.000225 0.000302 0.000526
+Max Mean Min Now CR: 75.600000% 75.600000% 75.600000% 75.600000%
+Max Mean Min Now Classification Loss: 0.523531 0.523531 0.523531 0.523531
+Max Mean Min Now Nodes: 20 20.000000 20 20
+Max Mean Min Now Source 1 CR: 43.200000% 43.200000% 43.200000% 43.200000%
+Network structure: 28  20   2 (Discriminative) | 28  20  28 (Generative)
+
+Minibatch: 1050/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.278427 2.973042 2.508248 2.946255 3121.693656
+Max Mean Min Now Accu Testing time: 0.000780 0.000378 0.000225 0.000361 0.396409
+Max Mean Min Now CR: 93.200000% 86.604385% 65.600000% 89.400000%
+Max Mean Min Now Classification Loss: 0.883605 0.308392 0.193711 0.228002
+Max Mean Min Now Nodes: 34 33.624404 20 34
+Max Mean Min Now Source 1 CR: 83.000000% 72.907150% 40.800000% 74.200000%
+Network structure: 28  34   2 (Discriminative) | 28  34  28 (Generative)
+
+Minibatch: 2100/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.278427 2.971686 2.508248 2.968588 6240.541385
+Max Mean Min Now Accu Testing time: 0.000912 0.000378 0.000225 0.000402 0.793291
+Max Mean Min Now CR: 95.000000% 88.239066% 65.600000% 93.600000%
+Max Mean Min Now Classification Loss: 0.883605 0.279385 0.147213 0.190385
+Max Mean Min Now Nodes: 34 33.812292 20 34
+Max Mean Min Now Source 1 CR: 83.000000% 73.795712% 40.800000% 70.400000%
+Network structure: 28  34   2 (Discriminative) | 28  34  28 (Generative)
+
+Minibatch: 3150/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.278427 2.973138 2.508248 2.968707 9365.384800
+Max Mean Min Now Accu Testing time: 0.000946 0.000377 0.000225 0.000356 1.186606
+Max Mean Min Now CR: 95.200000% 88.982407% 62.600000% 90.400000%
+Max Mean Min Now Classification Loss: 0.883605 0.267401 0.134385 0.254365
+Max Mean Min Now Nodes: 34 33.874881 20 34
+Max Mean Min Now Source 1 CR: 83.400000% 73.884217% 40.800000% 75.000000%
+Network structure: 28  34   2 (Discriminative) | 28  34  28 (Generative)
+
+Minibatch: 3500/3500
+Total of samples: 500 Source | 500 Target
+Max Mean Min Now Accu Training time: 3.278427 2.972520 2.508248 2.965177 10403.818616
+Max Mean Min Now Accu Testing time: 0.000946 0.000377 0.000225 0.000360 1.318313
+Max Mean Min Now CR: 98.200000% 88.919291% 52.200000% 89.600000%
+Max Mean Min Now Classification Loss: 0.883605 0.270016 0.128334 0.307604
+Max Mean Min Now Nodes: 34 33.887396 20 34
+Max Mean Min Now Source 1 CR: 83.400000% 73.188340% 40.800000% 74.400000%
+Network structure: 28  34   2 (Discriminative) | 28  34  28 (Generative)</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsFigure" uid="3CB30FF9" data-scroll-top="null" data-scroll-left="null" data-testid="output_21" style="width: 945px;"><div class="figureElement"><div class="figureContainingNode" style="width: 560px; max-width: 100%; display: inline-block;"><div class="GraphicsView" data-dojo-attach-point="graphicsViewNode,backgroundColorNode" id="uniqName_164_3" widgetid="uniqName_164_3" style="width: 100%; height: auto;"><img class="ImageView figureImage" data-dojo-attach-point="imageViewNode" draggable="false" ondragstart="return false;" id="uniqName_164_5" widgetid="uniqName_164_5" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjAAAAGkCAYAAAAv7h+nAAAgAElEQVR4AezBf5DlVX3g/TdfBGbaRhyg88WWsTd9dvPB66/N3FP6JGd5iNRtgaE8RNyhTlKmXAODN7UcjTzyWJPUni5gY8KKkIDBW0zHLbVWjL2ZZiBAFq9GluRItKdQl9zlU1bmEXSHHzNkEGYGJkLPU/1HV1GWQbKGZXrm83o1h4wxxhhjVpkGY4wxxphVpsEYY4wxZpVpMMYYY4xZZRqMMcYYY1aZBmOMMcaYVabBGGOMMWaVaTDGGGOMWWUajDHGGGNWmQZjjDHGmFWmwRhjjDFmlWkwxhhjjFllGowxxhhjVpkGY4wxxphVpsEYY4wxZpVpMMYYY4xZZRqMMcYYY1aZBmPMqnLrrbfyF3/xF7zQ//pf/4tbb72VRx55hH9uzz33HLfeeis7duzglfIP//APzM/P85//83/mm9/8Ji+3b37zm9x6660899xzGGMOTw3GmFXlPe95D+eddx533303K/7qr/6K97znPfzN3/wN/9yeffZZ3vOe93DDDTfwSsk5c9FFF/Hv//2/5/Of/zwvt+uuu473vOc9PPvssxhjDk8NxphV6bd+67f4h3/4B44Gd999N2vXruXAgQPccMMNGGNMgzFmVdq5cye///u/z4979tlnufDCC7nuuutY8Xu/93tceOGFLPvOd77DhRdeyK233srmzZuZmJjg137t19i5cyebN29mYmKCiy66iN27d/NC+/fv50Mf+hCve93rOPfcc3nwwQdZ8eCDDxJjZGJignPPPZd7772XZc8++ywXXngh11xzDTMzM2zYsIG9e/fy45544gkuv/xyzjjjDM444ww++tGPsnfvXpZdfPHFPPLIIzz33HNceOGF7Nixgxd67rnnuPDCC7npppv43d/9XX7+53+eM888k3vuuYcVTzzxBJdffjlnnHEGZ5xxBh/96EfZu3cvK77zne9w7rnn8vrXv54PfehDPPPMM7zQgw8+SIyRiYkJzj33XO69915e6IYbbsB7z8TEBGeeeSb/5b/8F4wxL68GY8yq0+v1OP300/n93/99du7cyQs999xzLCws8M1vfpMVX//611lYWGDZ448/zsLCAr/+67/OSSedRAiBL37xi7z1rW/luOOO48wzz2R+fp7f+73f44X+7M/+jL1793LJJZfw1a9+lbPOOotnn32WJ554gjPPPJMdO3Zw+eWX8+ijjzIzM8ODDz7Ic889x8LCAr/7u7/Lvn37mJycZN26dbzQ0tIS55xzDtdffz2dTodOp8MnP/lJNm7cyLITTjiBFSeccALHHnssL7S0tMTCwgK//du/zXe/+13e97738Vd/9VeklFi2tLTEOeecw/XXX0+n06HT6fDJT36SjRs3smzfvn3MzMzw3//7f+c3f/M3efTRR9m+fTsrnnjiCc4880x27NjB5ZdfzqOPPsrMzAwPPvggy+6++24+/OEP84u/+Itcd911LC0t8b73vY8HHngAY8zLp8EYs+qceOKJ/PEf/zEHDx5k8+bN/O8499xzufbaa/n0pz/Nsm63y0033cQXvvAFlj388MO80L/5N/+Gz3/+81x99dVcfvnlPP744/zFX/wFt9xyC3v27OHaa69ly5YtbN++nYMHD/KZz3yGFb/wC7/A17/+df78z/+cH3fnnXeyY8cOPvzhD7Nt2za2bdtGzpn77ruP2267jZtuuokTTzyRNWvWcMstt/Cv//W/5ifpdDp86Utf4uqrr+acc87h0UcfZWlpiTvvvJMdO3bw4Q9/mG3btrFt2zZyztx3333cdttt3HXXXTz++ONcccUVXH311XzpS1/ibW97GytuueUW9uzZw7XXXsuWLVvYvn07Bw8e5DOf+QzLdu/ezbLvf//7rFmzhj/5kz/h4MGDvPnNb8YY8/JpMMasSjFGLrjgAr761a9yyy238E91yimnsOzEE09k2eTkJMuapuEnmZ6eZsWb3vQmlj399NN8+9vfZtn73/9+1qxZg4iw7Hvf+x4r3vzmN/OPeeyxx1gWQmBFCIFlu3fv5qWanp5mxdjYGMuee+45HnvsMZaFEFgRQmDZ7t27eeqpp1jW6XRY8cY3vpEV3/72t1n2/ve/nzVr1iAiLPve977HsgsuuIBzzjmH//bf/hsXXXQRb3zjGznnnHN47LHHMMa8fBqMMavWH//xH/PqV7+a7du38+Oef/55Vuzdu5ef1a5du1jx2GOPsWzNmjWcdtppLPviF7/Inj17ePzxx/nhD3/I5z73OVasXbuWf8zY2BjLHnroIVbs3LmTZa95zWv4WY2NjbHsoYceYsXOnTtZ9prXvIaxsTGWPfbYY6x49NFHWXHaaaex7Itf/CJ79uzh8ccf54c//CGf+9znWDY+Ps5//a//lf/5P/8nc3NznH322Xzta1/jE5/4BMaYl0+DMWbVev3rX89VV13FC42NjXHcccdxzz33cOedd3LTTTdRa+VnNRwOue6669i2bRuf/OQnWbt2LWeffTabNm1i2fXXX899993H7/zO73DyySfzuc99jpfiXe96F+vWrePjH/84N998MzfffDOf+MQnOO200zjvvPP4Wb3rXe9i3bp1fPzjH+fmm2/m5ptv5hOf+ASnnXYa5513Hr/yK7/CCSecwDXXXMO2bdu47rrr+NrXvsaKTZs2sez666/nvvvu43d+53c4+eST+dznPseyK6+8khNPPJG5uTne9a538Su/8issO+mkkzDGvHwajDGr2uWXX87b3vY2VjRNwx/8wR/wxBNPcP755/Onf/qnnH/++fys3v3udzM3N8d73/te9u/fzxe+8AVOOeUU3vrWt/LpT3+a+++/n5mZGQaDAR/4wAe49NJLeSlOOeUU7rjjDiYnJ/ngBz/IBz/4Qd7whjfw5S9/mfHxcX5Wp5xyCnfccQeTk5N88IMf5IMf/CBveMMb+PKXv8z4+Dive93r+PznP8/TTz/Ne9/7Xj7zmc9wwQUXsOKtb30rn/70p7n//vuZmZlhMBjwgQ98gEsvvZRlH/vYx3jf+97HH/7hH/KGN7yBUgqbNm3iiiuuwBjz8mkwxqwqhw4dYtu2bbzQt771LQ4dOsSv/uqvsuzyyy/nwIED7N+/n3vuuYc///M/59ChQyzr9XocOnSIrVu3smx8fJxDhw5xyy23sOz444/n0KFDbNu2jWXj4+McOnSI2267jdFoxP79+3nyySf51V/9VVb0+32eeuopnn76aQ4cOMDWrVtZNj4+zqFDh/jsZz/Li/mlX/olHnjgAZ555hmeeeYZvvWtb/HmN7+ZFbt37+app57iJzn++OM5dOgQ27ZtY8W2bds4dOgQxx9/PMt+6Zd+iQceeIBnnnmGZ555hm9961u8+c1vZsWmTZt48skn2b9/Pw888AC33norhw4dYnx8nGX9fp+nnnqKp59+mgMHDrB161ZWrFmzhs9//vM8++yzPP300xw8eJAvfelLrFmzBmPMy6fBGHNEOv744xkbG+Of29jYGE3T8OOapmF8fJzjjz+e/11r1qxhzZo1vFzWrFnDmjVr+EmapmFsbIx/TNM0jI+Pc/zxx/OTvOpVr2J8fJzjjz8eY8zLr8EYY4wxZpVpMMYYY4xZZRqMMcYYY1aZBvNTxb/cy7mdiIggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAi/8Ru/wZGowbwkf/AHf4Cqoqo88Nef5YG//iyqiqqiqqgqqoqqoqqoKqqKqqKqqCqqiqqiqqgqqoqqoqqoKqqKqqKqqCqqiqqiqqgqqoqqoqqoKqqKqqKqqCqqiqqiqqgqqoqqoqqoKqqKqqKqqCqqiqqiqqgqqoqqoqosU1VUFVVFVVFVVBVVRVVRVVQVVUVVUVVUFVVFVVFVVBVVRVVRVVQVVUVVUVVUFVVFVVFVVBVVRVVRVVQVVUVVUVVUFVVFVVFVVBVVRVVRVVQVVUVVUVVUFVVFVVFVVBVVRVVRVVQVVUVVUVWWqSqqiqqiqqgqqoqqoqqoKqqKqqKqqCqqiqqiqqgqqoqqoqqoKqqKqqKqqCqqiqqiqqgqqoqqoqqoKqqKqqKqqCqqiqqiqqgqqoqqoqqoKqqKqqKqqCqqiqqiqqgqqoqqoqqoKqqKqqKqqCrLVBVVRVVRVVQVVUVVUVVUFVVFVVFVVBVVRVVRVVQVVUVVUVVUFVVFVVFVVBVVRVVRVVQVVUVVUVVUFVVFVVFVVBVVRVVRVVQVVUVVUVVUFVVFVVFVVBVVRVVRVVQVVUVVUVVUFVVFVVFVVJVlqoqqoqqoKqqKqqKqqCqqiqqiqqgqqoqqoqqoKqqKqqKqqCqqiqqiqqgqqoqqoqqoKqqKqqKqqCqqiqqiqqgqqoqqoqqoKqqKqqKqqCqqiqqiqqgqqoqqoqqoKqqKqqKqqCqqiqqiqqgqqsoyVUVVUVVUFVVFVVFVVBVVRVVRVVQVVUVVUVVUFVVFVVFVVBVVRVVRVVQVVUVVUVVUFVVFVVFVVBVVRVVRVVQVVUVVUVVUFVVFVVFVVBVVRVVRVVQVVUVVUVVUFVVFVVFVVBVVRVVRVVQVVWWZqqKqqCqqiqqiqqgqqoqqoqqoKqqKqqKqqCqqiqqiqqgqqoqqoqqoKqqKqqKqqCqqiqqiqqgqqoqqoqqoKqqKqqKqqCqqiqqiqqgqqoqqoqqoKqqKqqKqqCqqiqqiqqgqqoqqoqqoKqqKqvKNb3yDI1GD+Sd7Rv8IY4wxxrxyGowxxhhjVpkG85ItHfgBP9pzH0eDyy67jKPRZZddxtHosssu42h02WWXcTS67LLLOBpddtllmCNHg3lJXjv5GvbdfwXP6B9x7NjpHDt2OkeynDNHo5wzR6OcM0ejnDNHo5wzR6OcM+bI0WBesqVnfsD4L36CV//iJ2jGTscYY4wxr4wG85ItHfgBzdjpGGOMMeaV1WBe1OPPLnH83+/j+QM/wBhjjDGHhwbzkjyjf8ha+TDGGGOMeeU1mJdk6cAPeNUp/xfGGGOMeeU1mJfktZMnYYwxxpjDQ4M5Iuz7/i7+7ou3UXOh5kLNhZoLNRdqLtRcqLlQc6HmQs2Fmgs1F2ou1FyouVBzoeZCzYWaCzUXai7UXKi5UHOh5kLNhZoLNRdqLtRcqLlQc6HmQs2Fmgs1F2ou1FyouVBzoeZCzYWaCzUXai7UXKi5UHOh5kLNhZoLNRdqLtRcqLlQc6HmQs2Fmgs1F2ou1FyouVBzoeZCzYWaCzUXai7UXKi5UHOh5kLNhZoLNRdqLtRcqLlQc6HmQs2Fmgs1F2ou1FyouVBzoeZCzYWaCzUXai7UXKi5UHOh5kLNhZoLNRdqLtRcqLlQc6HmQs2Fmgs1F2ou1FyouVBzoeZCzYWaCzUXai7UXKi5UHOh5kLNhZoLNRdqLtRcqLlQc6HmQs2Fmgs1F2ou1FyouVBzoeZCzYWaCzUXai7UXKi5UHOh5kLNhZoLNRdqLtRcqLlQc6HmQs2Fmgs1F2ou1FyouVBzoeZCzYWaCzUXai7UXKi5UHOh5kLNhZoLNRdqLtRcqLlQc6HmQs2Fmgs1F2ou1FyouVBzoeZCzYWaCzUXai7UXKi5UHOh5kLNhZoLNRdqLtRcqLlQc6HmQs2Fmgs1F2ou1FyouVBzoeZCzYWaCzUXai7UXKi5UHOh5kLNhZoLNRdqLtRcqLlQc6HmQs2Fmgs1F2ou1FyouVBzoeZCzYWaCzUXai7UXKi5UHOh5kLNhZoLNRdqLtRcqLlQc6HmQs2Fmgs1F2ou1FyouVBzoeZCzYWaCzUXai7UXKi5UHOh5kLNhZoLNRdqLtRcqLlQc6HmQs2Fmgs1F2ou1FyouVBzoeZCzYWaCzUXai7UXKi5UHOh5kLNhZoLNRdqLtRcqLlQc6HmQs2Fmgs1F2ou1FyouVBzoeZCzYWaCzUXai7UXKi5UHOh5kLNhZoLNRdqLtRcqLlQc6HmQs2Fmgs1F2ou1FyouVBzoeZCzYWaCzUXai7UXKi5UHOh5kLNhZoLNRdqLtRcqLlQc6HmQs2Fmgs1F2ou1FyouVBzoeZCzYWaCzUXai7UXKi5UHOh5kLNhZoLNRdqLtRcqLlQc6HmQs2Fmgs1F2ou1FyouVBzoeZCzYWaCzUXai7UXKi5UHOh5kLNhZoLNRdqLrx7//EciRrMS7L0zA84dux0Dmff+U8D2uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg6cNnjZ42uBpg+ehVz3PkajBvGTN2Okc7lyKuBRxKeJSxKWISxGXIi5FXIq4FHEp4lLE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QhKSkIQkJCEJSUhCEpKQhCQkIQlJSEISkpCEJCQhCUlIQhKSkIQkJCEJSUhCEpKQhCQkIQlJSEISkpCEJCQhCUlIQhJlZWX8LXJMUsPDw0QiEXKcc+Tl5TE6Osp7bdy4ETPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMDDPDzDAzzAwzw8wwM8wMM8PMMDPMjI0bN/K3yDFJOefIZDKMlc1mcc7heZ7ned745pikCgsLSaVS5AwODhIOhwmFQnie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XFxMTnV1Nd3d3SQSCTo7OykuLmY8uvnmm9m6dStr1qzh5z//OWeccQaB6upquru7SSQSdHZ2UlxcTE51dTXd3d0kEgk6OzspLi4mp7q6mu7ubhKJBJ2dnRQXFzMe3XzzzWzdupU1a9bw85//nDPOOINALBZj27ZtJBIJurq6kEROdXU13d3dJBIJOjs7KS4uJqe6upru7m4SiQSdnZ0UFxcz3jm8SSsUChGNRnkv5xzRaJSjcc4RjUb5W+GcIxqNcjTOOaLRKEfjnCMajTJRhUIhotEoR+OcIxqNcjTOOaLRKBOVc45oNMrROOeIRqMcjXOOaDTKRBUKhYhGoxyNc45oNMrROOeIRqOMd+FwmGg0yns554hGoxyNc45oNMrROOeIRqOMd+FwmGg0ynuFQiGi0ShH45wjGo1yNM45otEoE4XD8zzP8zxvgnF4nud5nudNMA7P8zzP87wJxuF5nud5njfBODzP8zzP8yYYh+d5k9b27dtJJpMczY4dO0gmk4yOjrJ9+3b+HKOjo2zfvp3AH//4R7Zv387/VCaT4b8zOjrK9u3b8Txv8nF4njdpXX/99Vx33XUMDg4y1u9//3uuvfZabrnlFtLpNNdffz1/jnQ6zfXXX08glUpx/fXX8z8Ri8V45pln+O+k02muv/56PM+bfBye501qZ511Fj/72c8Y64knnuDv//7vCeTn52Nm/Dny8/MxM/63uru78TzPez8Oz/MmtaqqKp544gnGevzxx7nkkksIpNNpli5dSiCdTrNixQp+8pOfcMkll3DJJZewYcMGctLpNEuXLmWsRx55hDlz5lBTU8P27dvJ6enp4brrruPcc8+lurqadevWEfjOd75DOp0mkUiwa9cuAq+++ipLly7l3HPPpba2lt27dzPWT37yE+bNm8cll1zCD37wA3IOHDjAsmXLOPfcc1m8eDHPPvssOevWrWPevHnMnj2blStX8vvf/x7P8yYOh+d5k9pFF13Erl27GBwcJHDw4EEGBwc59dRTCYyOjrJt2zYCo6OjPP744/T29vLwww+zYsUK7r77bsyMwOjoKNu2bWOs3bt3s3nzZpYtW8Y///M/Y2YcPHiQa6+9lquuuopkMsltt93G/fffz549e7j66quJRCJcc801nHHGGbz77rssXLiQz33uczz99NPMnz+furo63n33XXKee+45vve9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mjWLp59+mj/luOOOY+7cucydO5dLLrmEa6+9lsB//Md/kNPZ2cmFF17I9OnTOfPMM7nrrrsI3HHHHYyMjPDCCy9w2WWXkbN//34uvfRSpk+fTlVVFclkEs/zPjgOz/PGpZ6eHgLnnHMOY33uc5+jqamJL3zhC7zXSy+9xKWXXsqbb77J7bffTiQS4ZZbbmH79u0Eurq6WLZsGTNmzGD16tVkMhkWLVrE3r176erqYtmyZcyYMYPVq1eTyWRYtGgRe/fuJZPJ0N7eTk9PD4FIJEJOJBIhLy+P9vZ2enp6CIyMjDB79mw2bdrE3LlzmT59Ot/4xje44447eOmll7j00kt58803uf3224lEItxyyy1s376dwJQpUwg454hEImQyGdrb2+np6SGQyWS46KKLuO+++zj11FM59dRT+da3vsXcuXMJZDIZ2tvbuemmm+jr62PRokXs2LGDK6+8kj/l0KFDbNq0iU2bNrFx40ZWrVpFYMGCBQReeuklLr30Ut58801uv/12IpEIt9xyC9u3b2fKlCkEnHNEIhECb775JrNmzeLXv/41y5cv54033qCyspL9+/fjed4Hw+F53riUTqcJhMNh/lynnHIKe/fu5cknn2TRokVUVFQQOHz4MIHDhw8TOHDgANOmTeOhhx4inU5z2mmncfjwYQIHDhxg2rRpPPTQQ6TTaU477TTeq7m5mWOOOYZp06bx6KOPcsYZZzDW448/Tl9fHytWrGDdunU8+eST3HfffVxwwQWccsop7N27lyeffJJFixZRUVFB4PDhwwRWrFjBlClTOO2003j00Ud5r87OTn7961+zbNkyNm/ezObNm7nhhht45plneOyxx8g59dRT+fGPf8yqVau46KKLeOONN8hkMhzNnj17uPLKK7nyyiv5yle+QmFhIT/4wQ+YNWsWgVNOOYW9e/fy5JNPsmjRIioqKggcPnyYFStWMGXKFE477TQeffRRAo8++igDAwM0NTURj8f56U9/Sjqd5nvf+x6e530wHJ7njUsf+tCHCLzzzjuMNTw8TE9PD0fjnGPTpk2cd955FBUVsWHDBsaqrq7moosu4sknn+Tyyy/nM5/5DBdddBGHDh2iurqaiy66iCeffJLLL7+cz3zmM1x00UUcOnSIv9Rbb71FoKSkhIBzjptuuonzzz8f5xybNm3ivPPOo6ioiA0bNvCXOHToEIHzzz+fnPPPP5/A4cOHyTnllFPIyc/PJzAyMsLRXHDBBbzzzjt861vfIjA6OsqcOXPIcc6xadMmzjvvPIqKitiwYQPvZ/fu3QQWL17MtGnTkETg1VdfxfO8D4bD87xxqby8nEgkwhNPPMFbb71FzoMPPsi5557LjTfeyHutX7+e2267jQULFnDkyBFWr15NwDlHoKCggLa2Nl588UVaWlooLy/nqaee4t5776WgoIC2tjZefPFFWlpaKC8v56mnnuLee+/lL5Wfn0/g1VdfJWfVqlU8/vjjrF+/nttuu40FCxZw5MgRVq9eTcA5x58jPz+fwG9/+1tyXnnlFQJ/93d/x//ElClTKCgoYPny5dxwww38+te/ZuHCheSsX7+e2267jQULFnDkyBFWr15NwDnH0XzkIx8h8KMf/YiBgQH+8z//k//6r/9iw4YNeJ73wXB4njcu5efn09DQwMDAAF/4whdoamripptu4uabbyYajXLjjTfyXq+99hqBaDTK66+/zgMPPEBgZGSEwO23384xxxxDS0sLc+bM4YILLiBQWFjI7bffzjHHHENLSwtz5szhggsuIFBYWMhfqry8nGOOOYbVq1fz6KOPcscdd7By5Uo6Ozt57bXXCESjUV5//XUeeOABAiMjI+Q459i7dy+tra2815w5c/jwhz/MnXfeyYMPPsiDDz7Ivffey0c+8hEuvvhi/rf+9V//lVNOOYXt27fzwx/+kMBrr71GIBqN8vrrr/PAAw8QGBkZIeCcY+/evbS2thKoqakhcN999/HMM89wyy23UFRUxIYNG/A874Ph8Dxv3IrH49x33328+eabxGIxvv3tb/PpT3+an/3sZ3zyk5/kverq6pBEY2Mjkjj77LMJ7Ny5k8CKFStYtGgR999/PyeddBIrV66kpqaGWCzGihUrWLRoEffffz8nnXQSK1eupKamhlgsxl9q+vTptLW1MXXqVBYuXMg3vvENKioqWLVqFXV1dUiisbERSZx99tkEdu7cSc6CBQt44403uPzyyxkaGmKs4447jq1bt/LRj36U6667juuuu46TTjqJbdu2UVBQwP/WtGnT2LBhA4Hly5fz1ltvUVdXhyQaGxuRxNlnn01g586dBBYsWMAbb7zB5ZdfztDQEKeffjrf+c536O3tpbKykgceeIAlS5Zw7bXX4nneB8Phed64dtNNN3H48GFSqRTvvvsu+/bt44tf/CI5U6dOJZvNsnnzZo4//nj2799PKpViaGiIu+++m2w2S3NzM4Fp06axceNGjhw5wjvvvEM6nebHP/4x06ZNY9q0aWzcuJEjR47wzjvvkE6n+fGPf8y0adOYOnUq2WyWzZs3k3P48GHefvttAlOnTiWbzbJ582Zy5syZw4EDB3jnnXdIp9Ns27aN4447juOPP579+/eTSqUYGhri7rvvJpvN0tzcTM7GjRtJpVKk02mKiorIZrNs3ryZnC984Qvs3buXd999l3fffZfnn3+e0047jcDUqVPJZrNs3ryZnM2bN5PNZpk6dSrvlc1m2bZtG2Odf/75ZLNZDh06xIc//GGOP/549u/fTyqVYmhoiLvvvptsNktzczOBjRs3kkqlSKfTFBQUEPja177G22+/zTvvvMPw8DDr1q3D87wPjsPzvAkhPz+fadOm8efIz89nypQp/ClTpkyhoKCAqVOn8l5TpkyhoKCAqVOn8kEoKChg6tSpvFd+fj5TpkzhT8nPz2fq1Km8n2nTpjFt2jT+r+Tn5zNlyhSOJj8/n6lTpzKWc46CggKmTp2K53kfLIfneZ7ned4E4/A8z/M8z5tgHJ7neZ7neROMw/tvXXXVVUhCEpKQhCQkIQlJSEISkpCEJCQhCUlIQhKSkIQkJCEJSUhCEpKQhCQkIQlJSEISkpCEJCQhCUlIQhKSkIQkJCEJSUhCEpKQhCQkIQlJSEISkpCEJCQhCUlIQhKSkIQkJCEJSUhCEpKQhCQkIQlJSEISkpCEJCQhCUlIQhKSkIQkJCEJSUhCEpKQhCQkIQlJSEISkpCEJCQhCUlIQhKSkIQkJCEJSUhCEpKQhCQkIQlJSEISkpCEJCQhCUlIQhKSkIQkJCEJSUhCEpKQhCQkIQlJSEISkpCEJCQhCUlIQhKSkIQkJCEJSUhCEpKQhCQkIQlJSEISkpCEJCQhCUlIQhKSkIQkJCEJSUhCEpKQhCQkIQlJSEISkpCEJCQhCUlIQhKSkIQkJCEJSUhCEpKQhCQkIQlJSEISkpCEJCQhCUlIQhKSkIQkJCEJSUhCEpKQhCQkIQlJSEISkpCEJCQhCUlIQhKSkIQkJCEJSUhCEpKQhCQkIQlJSEISkpCEJCQhCUlIQhKSkIQkJCEJSUhCEpKQhCQkIQlJSEISkpCEJCQhCUlIQhKSkIQkJCEJSUhCEpKQhCQkIQlJSEISkpCEJCQhCUlIQhKSkIQkJCEJSUhCEpKQhCQkIQlJ/L/swUFoJOl9+P3vtjF5ZMKbric5bB3CPEVN/o9l8GGHKR+WgEoGSwnvG3JJiAgEdeMcssMOibP4YBbcLRPdHAjMoL0Y1LqEhhhyMAlIxqsanOiF7UGDEzLKL96iazd/6IXE1X3wemrJa/ulDkX6r0gz0szseiT9Ph/vPd57vPd47/He473He4/3Hu893nu893jv8d7jvcd7j/ce7z3ee7z3eO/x3uO9x3uP9x7vPd57vPd47/He473He4/3Hu893nu893jv8d7jvcd7j/ce7z3ee7z3eO/x3uO9x3uP9x7vPd57vPd47/He473He4/3Hu893nu893jv8d7jvcd7j/ce7z3ee7z3eO/x3uO9x3uP9x7vPd57vPd47/He473He4/3Hu893nu893jv8d7jvcd7j/eeP/qjP+IyaqGe6J133kFEEBFEBBFBRBARRAQRQUQQEUQEEUFEEBFEBBFBRBARRAQRQUQQEUQEEUFEEBFEBBFBRBARRAQRQUQQEUQEEUFEEBFEBBFBRBARRAQRQUQQEUQEEUFEEBFEBBFBRBARRAQRQUQQEUQEEaEmIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggItREBBFBRBARRAQRQUQQEUQEEUFEEBFEBBFBRBARRAQRQUQQEUQEEUFEEBFEBBFBRBARRAQRQUQQEUQEEUFEEBFEBBFBRBARRAQRQUQQEUQEEUFEEBFEBBFBRBARRAQRQUQQEUQEEUFEEBFEhJqIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIICKICCKCiCAiiAgigoggIogIIoKIUBMRRAQRQUQQEUQEEUFEEBFEBBFBRBARRAQRQUQQEUQEEUFEEBFEBBFBRBARRAQRQUQQEUQEEUFEEBFEBBFBRBARRAQRQUQQEUQEEUFEEBFEBBFBRBARRAQRQUQQ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" style="width: 100%; height: auto;"></div></div></div></div></div></div><div class="inlineWrapper"><div  class = 'S4'></div></div></div></div>
+<br>
+<!-- 
+##### SOURCE BEGIN #####
+clc
+clear
+addpath MmodelPackages
+dm = DataManipulator('./data');
+for i = 1:7
+    %%REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHdatasetREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-%%
+    if i == 1
+        fprintf('weather')
+        dm.loadWeatherDataset();
+    elseif i == 2
+        fprintf('sea')
+        dm.loadSeaDataset();
+    elseif i == 3    
+        fprintf('hyperplane')
+        dm.loadHyperplaneDataset();
+    elseif i == 4   
+        fprintf('kdd')
+        dm.loadKDDDataset();
+    elseif i == 5
+        fprintf('susy')
+        dm.loadSUSYDataset();
+    elseif i ==6
+        fprintf('kitti')
+        dm.loadKittiDataset();
+    elseif i ==7 
+        fprintf('hepmass')
+        dm.loadHepmassDataset();
+    end
+    %%REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHdatasetREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-%%
+    dm.normalize();
+    epochs = 1;
+    nRun = 5;
+    AOMSDA
+end
+##### SOURCE END #####
+--></body></html>

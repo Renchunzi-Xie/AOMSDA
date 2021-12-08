@@ -9,7 +9,7 @@ This paper has been accepted by Information Sciences.
 
 `AOMSDA` uses Matlab and it was the original code used for this paper. 
 
-All the datasets have provided in this code except susy and hepass because the limited space.
+All the datasets have been provided in this code except `susy` and `hepass` because the limited space.
 
 
 # AOMSDA_Matlab
